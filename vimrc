@@ -8,10 +8,10 @@ set expandtab
 set nu
 syntax on
 
-set showmatch			" show matching braces
-set title				  " show terminal title
-set wildmenu			" menu for tab completion
-set wildmode=list:full	" list for wildcard completion
+set showmatch           " show matching braces
+set title               " show terminal title
+set wildmenu            " menu for tab completion
+set wildmode=list:full  " list for wildcard completion
 
 " FOLDING
 "
