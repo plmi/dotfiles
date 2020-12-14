@@ -1,0 +1,24 @@
+py2server() {
+	# use 8000 if no argument supplied
+	port="${1:-8000}"	
+	python -m SimpleHTTPServer "$port"
+}
+
+pyserver() {
+	port="${1:-8000}"	
+	python -m http.server "$port"
+}
+
+phpserver() {
+	port="${1:-8000}"
+	# ensures to not bind to ipv6 loopback address
+	php -S 0.0.0.0:"$port"
+}
+
+mkcd() {
+	if [[ ! -d "$@" ]]; then
+		mkdir -p "$@"
+	fi
+	cd "$@"
+}
+

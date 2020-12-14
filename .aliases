@@ -1,0 +1,36 @@
+#/usr/bin/env bash
+
+EDITOR="$(which vim)"
+
+# configs
+alias bashrc="$EDITOR ~/.bashrc"
+alias vimrc="$EDITOR ~/.vim/vimrc"
+alias tmuxrc="$EDITOR ~/.tmux.conf"
+alias zshrc="$EDITOR ~/.zshrc"
+
+# shortcuts
+alias sb='. ~/.bashrc'
+alias bb='sudo shutdown -h now'
+alias brb='sudo shutdown -r now'
+alias ws2020='cd ~/Documents/fau/ws2020'
+
+# directory
+alias ..='cd ..'
+alias ....='cd ../..'
+alias ......='cd ../../..'
+
+# directory listing
+color=$([[ "$OSTYPE" == "darwin"* ]] && echo -n "-G" || echo -n "--color=auto")
+alias ls="ls ${color}"
+alias la="ls -ld .* ${color}"
+alias ll="ls -lt ${color}"
+alias dirsize="du -csh * | sort -n"
+
+# search
+alias grep='grep --color=auto'
+alias prettyjson='python -m json.tool'
+
+# network
+alias 88='ping -c 2 8.8.8.8'
+alias localip="ip -o route get to 8.8.8.8 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'"
+alias publicip='dig +short myip.opendns.com @resolver1.opendns.com'
