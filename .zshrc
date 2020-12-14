@@ -9,16 +9,18 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-if [ -f "./.aliases" ]; then
+DOTFILES="$HOME/dotfiles"
+
+if [ -f "${DOTFILES}/.aliases" ]; then
 	. "${DOTFILES}/.aliases"
 fi
 
-if [ -f "./.functions" ]; then
+if [ -f "${DOTFILES}/.functions" ]; then
 	. "${DOTFILES}/.functions"
 fi
 
-if [ -f "./.zsh-prompt" ]; then
-	. "./.zsh-prompt"
+if [ -f "${DOTFILES}/.zsh-prompt" ]; then
+	. "${DOTFILES}/.zsh-prompt"
 fi
 
 if [ -d "$HOME/.bin" ]; then
