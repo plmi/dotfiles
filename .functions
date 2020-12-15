@@ -22,3 +22,8 @@ mkcd() {
 	cd "$@"
 }
 
+# convert hex to decimal (without 0x)
+h2d() {
+  # accepts: [0x][Aa]1
+  echo "$1" | sed 's/^0x//g' | tr \[a-z] \[A-Z] | xargs -I {} echo "obase=10;ibase=16;{}" | bc
+}
