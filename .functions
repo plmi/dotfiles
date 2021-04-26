@@ -1,3 +1,5 @@
+#!/bin/bash
+
 py2server() {
 	# use 8000 if no argument supplied
 	port="${1:-8000}"	
@@ -15,15 +17,10 @@ phpserver() {
 	php -S 0.0.0.0:"$port"
 }
 
-mkcd() {
-	if [[ ! -d "$@" ]]; then
-		mkdir -p "$@"
-	fi
-	cd "$@"
+pdfmerge() {
+  gs -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -o merged.pdf "$@"
 }
 
-# convert hex to decimal (without 0x)
-h2d() {
-  # accepts: [0x][Aa]1
-  echo "$1" | sed 's/^0x//g' | tr \[a-z] \[A-Z] | xargs -I {} echo "obase=10;ibase=16;{}" | bc
+open() {
+  nohup xdg-open "$1" > /dev/null 2>&1 &
 }
