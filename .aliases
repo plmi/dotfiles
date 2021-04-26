@@ -16,8 +16,6 @@ alias ws2020='cd ~/Documents/fau/ws2020'
 
 # directory
 alias ..='cd ..'
-alias ....='cd ../..'
-alias ......='cd ../../..'
 
 # directory listing
 color=$([[ "$OSTYPE" == "darwin"* ]] && echo -n "-G" || echo -n "--color=auto")
@@ -34,3 +32,5 @@ alias prettyjson='python -m json.tool'
 alias 88='ping -c 2 8.8.8.8'
 alias localip="ip -o route get to 8.8.8.8 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'"
 alias publicip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+alias yt='mpv --ytdl-format="bestvideo[height<=?720]+bestaudio/best"'
