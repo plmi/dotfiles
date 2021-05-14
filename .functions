@@ -22,6 +22,17 @@ pdfmerge() {
   gs -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -o "merged_$#.pdf" "$@"
 }
 
+pdfextract()
+{
+    # usage: pdfextract <from> <to> <file>
+    # output file: "inputfile_pXX-pYY.pdf"
+    gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
+       -dFirstPage=${1} \
+       -dLastPage=${2} \
+       -sOutputFile=${3%.pdf}_p${1}-p${2}.pdf \
+       ${3}
+}
+
 open() {
   nohup xdg-open "$1" > /dev/null 2>&1 &
 }
