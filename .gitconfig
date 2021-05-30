@@ -1,10 +1,11 @@
 [user]
 	name = plmi
 	email = 65455617+plmi@users.noreply.github.com
-
 [alias]
   st = status
   co = checkout
   uncommit = reset HEAD^
   tree = log --all --graph
   cm = !git add -A && git commit -m
+[core]
+	editor = vim
