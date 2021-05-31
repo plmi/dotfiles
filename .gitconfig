@@ -6,6 +6,5 @@
   co = checkout
   uncommit = reset HEAD^
   tree = log --all --graph
-  cm = !git add -A && git commit -m
 [core]
 	editor = vim
