@@ -3,7 +3,8 @@
 sudo apt update
 sudo apt upgrade -y
 sudo apt install build-essential git pass apt-file tmux vim zathura \
-  thunderbird zathura redshift dunst neofetch main p7zip-full
+  thunderbird zathura redshift dunst neofetch main p7zip-full \
+  gcc-multilib g++-multilib
 # dwm
 sudo apt install libx11-dev libxft-dev libxinerama-dev
 # anki
