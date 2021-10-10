@@ -12,7 +12,7 @@ alias zshrc="$EDITOR ~/.zshrc"
 alias sb='. ~/.bashrc'
 alias bb='sudo shutdown -h now'
 alias brb='sudo shutdown -r now'
-alias ws2020='cd ~/Documents/fau/ws2020'
+alias fau='cd ~/fau/ws2021'
 
 # directory
 alias ..='cd ..'
