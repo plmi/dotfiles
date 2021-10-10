@@ -1,6 +1,7 @@
 #/usr/bin/env bash
 
-EDITOR="$(which vim)"
+EDITOR="$(which nvim)"
+alias v=nvim
 
 # configs
 alias bashrc="$EDITOR ~/.bashrc"
