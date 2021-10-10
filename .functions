@@ -37,3 +37,8 @@ open() {
   nohup xdg-open "$1" > /dev/null 2>&1 &
 }
 
+flac2mp3() {
+  # convert all *.flac files in current directory to .mp3
+  find -type f -name "*.flac" \
+    -exec bash -c 'ffmpeg -i "{}" -y -acodec libmp3lame -ab 192k "${0/.flac}.mp3"' {} \;
+}
