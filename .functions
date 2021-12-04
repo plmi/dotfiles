@@ -34,7 +34,13 @@ pdfextract()
 }
 
 open() {
-  nohup xdg-open "$1" > /dev/null 2>&1 &
+  filename=$(basename "$1")
+
+  case "$filename" in 
+    *.pdf) nohup zathura "$1" > /dev/null 2>&1 & ;;
+    *.png) sxiv "$1" & ;;
+    *) echo "unkown file format:" "$extension" ;;
+  esac
 }
 
 flac2mp3() {
