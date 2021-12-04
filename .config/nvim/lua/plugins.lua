@@ -9,6 +9,29 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+  use {'neovim/nvim-lspconfig'}
+  use {'L3MON4D3/LuaSnip'}
+
+  -- completion
+  use {'hrsh7th/nvim-cmp'}
+  use {'hrsh7th/cmp-buffer'}
+  use {'hrsh7th/cmp-path'}
+  use {'hrsh7th/cmp-nvim-lua'}
+  use {'hrsh7th/cmp-nvim-lsp'}
+  use {'saadparwaiz1/cmp_luasnip'}
+  use {'onsails/lspkind-nvim'}
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+  use {'jiangmiao/auto-pairs'}
+  use {'puremourning/vimspector'}
+  use {'terrortylor/nvim-comment'}
+  require('nvim_comment').setup()
   
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -14,3 +14,6 @@ bo.autoindent = true
 
 local o = vim.o
 o.termguicolors = true
+
+-- vimspector
+vim.g.vimspector_enable_mappings = 'HUMAN'
