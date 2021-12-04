@@ -17,7 +17,9 @@ if [[ "$1" = "-s" ]]; then
     notify-send 'Select area to capture.' --urgency low -i $PHOTO_ICON_PATH
     maim -u -m 3 -s $FILENAME
     if [[ "$?" = "0" ]]; then
-        notify-send 'Screenshot!~' "Name: <span color=\"#EA9090\">$TIMESTAMP.png</span>  " -t $NOTIFY_TIME --urgency low -i $PHOTO_ICON_PATH
+        notify-send 'Screenshot!~' "Name: <span color=\"#EA9090\">$TIMESTAMP.png</span>  " \
+          -t $NOTIFY_TIME --urgency low -i $PHOTO_ICON_PATH
+        xclip -selection clipboard "$FILENAME" -t image/png
     fi
 elif [[ "$1" = "-c" ]]; then
     notify-send 'Select area to copy to clipboard.' --urgency low -i $PHOTO_ICON_PATH
