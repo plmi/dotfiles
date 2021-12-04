@@ -1,0 +1,12 @@
+#!/bin/sh
+# Press C-x to activate to key handler!
+
+# https://github.com/muennich/sxiv/issues/247#issuecomment-321316306
+while read file
+do
+  case "$1" in
+    "C-c")
+      xclip -selection clipboard "$file" -t image/png
+      ;;
+  esac
+done
