@@ -7,6 +7,10 @@ vim.api.nvim_set_keymap('n', '<space>', '<nop>', { noremap = true, silent = true
 vim.api.nvim_set_keymap('n', 'j', 'gj', {})
 vim.api.nvim_set_keymap('n', 'k', 'gk', {})
 
+-- substitute visual selection: 
+-- https://stackoverflow.com/a/676619/14634871
+vim.api.nvim_set_keymap('v', '<C-r>', '"hy:%s/<C-r>h//g<left><left>', { noremap = true })
+
 -- better indenting
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
