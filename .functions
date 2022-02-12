@@ -22,8 +22,7 @@ pdfmerge() {
   gs -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -o "merged_$#.pdf" "$@"
 }
 
-pdfextract()
-{
+pdfextract() {
     # usage: pdfextract <from> <to> <file>
     # output file: "inputfile_pXX-pYY.pdf"
     gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
@@ -31,16 +30,6 @@ pdfextract()
        -dLastPage=${2} \
        -sOutputFile=${3%.pdf}_p${1}-p${2}.pdf \
        ${3}
-}
-
-open() {
-  filename=$(basename "$1")
-
-  case "$filename" in 
-    *.pdf) nohup tabbed -c -r 2 zathura -e id "$1" > /dev/null 2>&1 & ;;
-    *.png) sxiv "$1" & ;;
-    *) echo "unkown file format:" "$extension" ;;
-  esac
 }
 
 flac2mp3() {

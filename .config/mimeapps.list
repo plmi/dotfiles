@@ -1,0 +1,3 @@
+[Default Applications]
+application/pdf=pdf.desktop
+image/png=/usr/share/applications/sxiv.desktop
