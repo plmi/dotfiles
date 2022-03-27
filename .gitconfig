@@ -6,6 +6,10 @@
   co = checkout
   uncommit = reset HEAD^
   tree = log --all --graph
-  unstage = git reset HEAD -- .
+  unstage = reset HEAD -- .
+  cl = reset --hard
+  dellocal = branch -d
+  delremote = push origin --delete
+  fap = fetch --all --prune
 [core]
-	editor = vim
+	editor = nvim
