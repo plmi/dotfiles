@@ -34,7 +34,6 @@ set nolazyredraw  " don't redraw while executing macros
 " imap	insert mode
 " nmap	normal mode
 "
-
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
@@ -45,6 +44,21 @@ nmap <leader>, :w<cr>
 imap <leader>q <esc>:q<cr>
 nmap <leader>q :q<cr>
 nmap QQ :q!<cr>
+
+" latex bindings
+autocmd FileType tex inoremap ;em \emph{}<Space>(<++>)<Esc>T{i
+autocmd FileType tex inoremap ;bf \textbf{}<++><Esc>T{i
+"autocmd FileType tex inoremap ;bf \textbf{}<Space>(<>)<Esc>T{i
+autocmd FileType tex inoremap ;it \textit{}<Space>(<>)<Esc>T{i
+autocmd FileType tex inoremap ;sec \section{}<Enter><Enter>(<>)<Esc>2kf}i
+
+" no more replacing chaos
+autocmd * inoremap ;a ä
+autocmd * inoremap ;A Ä
+autocmd * inoremap ;u ü
+autocmd * inoremap ;U Ü
+autocmd * inoremap ;o ö
+autocmd * inoremap ;O Ö
 
 " move by visual line, don't skip fake lines
 noremap j gj
