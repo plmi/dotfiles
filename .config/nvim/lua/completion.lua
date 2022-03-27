@@ -139,7 +139,7 @@ autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = fal
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- local servers = {'html', 'pylsp', 'rust_analyzer'}
-local servers = {'html', 'pyright', 'clangd', 'tsserver' }
+local servers = {'html', 'pyright', 'clangd', 'tsserver'}
 for i, server in ipairs(servers) do
   require('lspconfig')[server].setup {
     capabilities = capabilities
@@ -155,6 +155,5 @@ require'lspconfig'.omnisharp.setup {
   cmd = { "/opt/omnisharp/run", "--languageserver" , "--hostPID", tostring(pid) },
 }
 
--- setup nvim-comment
-local nvim_comment = require('nvim_comment')
-nvim_comment.setup()
+-- comment.nvim
+require('Comment').setup()

@@ -9,7 +9,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
-  use {'neovim/nvim-lspconfig'}
+  use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
   use {'L3MON4D3/LuaSnip'}
 
   -- completion
@@ -30,8 +30,16 @@ return require('packer').startup(function(use)
   }
   use {'jiangmiao/auto-pairs'}
   use {'puremourning/vimspector'}
-  use {'terrortylor/nvim-comment'}
-  require('nvim_comment').setup()
+  use { 'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+  }
+  -- use {'terrortylor/nvim-comment'}
+  -- require('nvim_comment').setup()
+
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+  use {'kyazdani42/nvim-web-devicons'}
   
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

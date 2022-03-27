@@ -6,10 +6,13 @@ vim.api.nvim_set_keymap('n', '<right>', '<nop>', {})
 vim.api.nvim_set_keymap('n', '<space>', '<nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'j', 'gj', {})
 vim.api.nvim_set_keymap('n', 'k', 'gk', {})
+vim.api.nvim_set_keymap('n', '<C-j>', ':cnext<cr>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-k>', ':cprevious<cr>', { noremap = true, silent = true})
 
 -- substitute visual selection: 
 -- https://stackoverflow.com/a/676619/14634871
 vim.api.nvim_set_keymap('v', '<C-r>', '"hy:%s/<C-r>h//g<left><left>', { noremap = true })
+
 
 -- better indenting
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
@@ -23,11 +26,11 @@ vim.api.nvim_set_keymap('n', '<S-tab>', ':bprevious<cr>', { noremap = true, sile
 vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv=gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv=gv', { noremap = true, silent = true })
 
--- window movement
-vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { silent = true })
+-- window movement (conflicts with quickfix list shortcuts)
+-- vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { silent = true })
+-- vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { silent = true })
+-- vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { silent = true })
+-- vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { silent = true })
 
 -- umlaute
 vim.api.nvim_set_keymap('i', ';a', 'ä', {})
@@ -36,6 +39,7 @@ vim.api.nvim_set_keymap('i', ';u', 'ü', {})
 vim.api.nvim_set_keymap('i', ';U', 'Ü', {})
 vim.api.nvim_set_keymap('i', ';o', 'ö', {})
 vim.api.nvim_set_keymap('i', ';O', 'Ö', {})
+vim.api.nvim_set_keymap('i', ';s', 'ß', {})
 
 -- bindings
 vim.api.nvim_set_keymap('i', 'jk', '<esc>', {})
@@ -55,7 +59,8 @@ vim.api.nvim_set_keymap('t', 'jk', '<C-\\><C-n>', { noremap = false })
 -- telescope
 vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope find_files<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>fs', ':Telescope grep_string search=', {})
+vim.api.nvim_set_keymap('n', '<c-_>', '<cmd>lua require(\'tele\').current_buffer_find()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>fr', '<cmd>Telescope lsp_references<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>gd', '<cmd>Telescope lsp_definitions<cr>', {})
@@ -64,7 +69,7 @@ vim.api.nvim_set_keymap('n', '<leader>gn', '<cmd>lua vim.lsp.diagnostic.goto_nex
 vim.api.nvim_set_keymap('n', '<leader>gp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>Telescope lsp_code_actions<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>fa', '<cmd>lua vim.lsp.buf.formatting()<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>fs', '<cmd>lua vim.lsp.buf.range_formatting()<cr>', {})
+--vim.api.nvim_set_keymap('n', '<leader>fs', '<cmd>lua vim.lsp.buf.range_formatting()<cr>', {})
 
 -- vimspector
 vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>call vimspector#Launch()<cr>', {})

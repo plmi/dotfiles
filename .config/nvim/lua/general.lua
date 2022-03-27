@@ -1,4 +1,6 @@
 vim.g.mapleader = ','
+-- respect my tabstop settings
+vim.g.python_recommended_style = 0
 
 local set = vim.opt
 set.tabstop = 2
@@ -14,6 +16,7 @@ bo.autoindent = true
 
 local o = vim.o
 o.termguicolors = true
+
 
 -- vimspector
 vim.g.vimspector_enable_mappings = 'HUMAN'
