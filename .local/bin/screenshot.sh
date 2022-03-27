@@ -21,6 +21,13 @@ if [[ "$1" = "-s" ]]; then
           -t $NOTIFY_TIME --urgency low -i $PHOTO_ICON_PATH
         xclip -selection clipboard "$FILENAME" -t image/png
     fi
+    # TODO: every option should have to possibily to
+    # either copy to clipboard or open with image viewer
+    # TODO: also there should be an option to not save the image an directly open in in viewer
+    # or copy it to clipboard
+    if [[ "$2" = "-o" ]]; then
+      sxiv "$FILENAME"
+    fi
 elif [[ "$1" = "-c" ]]; then
     notify-send 'Select area to copy to clipboard.' --urgency low -i $PHOTO_ICON_PATH
     # Copy selection to clipboard
