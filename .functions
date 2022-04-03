@@ -37,3 +37,11 @@ flac2mp3() {
   find -type f -name "*.flac" \
     -exec bash -c 'ffmpeg -i "{}" -y -acodec libmp3lame -ab 192k "${0/.flac}.mp3"' {} \;
 }
+
+noword() {
+  pandoc -o output.pdf -f docx "$1"
+}
+
+mkdirs() {
+  mkdir {exploit,loot,report,scans}
+}
