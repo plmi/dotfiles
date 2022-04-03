@@ -2,7 +2,7 @@
 
 # https://github.com/Eredarion/dotfiles/blob/master/bin/screenshot
 
-SCREENSHOTS_DIR="$HOME/Screenshots"
+SCREENSHOTS_DIR="$HOME/screenshots"
 TIMESTAMP="$(date +%Y.%m.%d-%H:%M:%S)"
 FILENAME=$SCREENSHOTS_DIR/$TIMESTAMP.png
 PHOTO_ICON_PATH="$HOME/.config/awesome/themes/skyfall/icons/screenshot.png"
