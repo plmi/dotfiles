@@ -1,53 +1,37 @@
-#!/usr/bin/env bash
+# Created by newuser for 5.8
+source $HOME/antigen.zsh
+antigen init ~/.antigenrc
 
-# fix permission problem on mojave: https://stackoverflow.com/a/61011665
-# activate shell completion
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+export HISTFILE=~/.zsh_history
+export HISTSIZE=1000000   # the number of items for the internal history list
+export SAVEHIST=1000000   # maximum number of items for the history file
 
-  autoload -Uz compinit
-  compinit
+# The meaning of these options can be found in man page of `zshoptions`.
+setopt HIST_IGNORE_ALL_DUPS  # do not put duplicated command into history list
+setopt HIST_SAVE_NO_DUPS  # do not save duplicated command
+setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
+setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
+setopt EXTENDED_HISTORY  # record command start time
+
+if [ -f "$HOME/dotfiles/.zsh-prompt" ]; then
+  . "$HOME/dotfiles/.zsh-prompt"
 fi
 
-DOTFILES="$HOME/dotfiles"
-
-if [ -f "${DOTFILES}/.aliases" ]; then
-	. "${DOTFILES}/.aliases"
+if [ -f "$HOME/dotfiles/.functions" ]; then
+  . "$HOME/dotfiles/.functions"
 fi
 
-if [ -f "${DOTFILES}/.functions" ]; then
-	. "${DOTFILES}/.functions"
+if [ -f "$HOME/dotfiles/.aliases" ]; then
+  . "$HOME/dotfiles/.aliases"
 fi
 
-if [ -f "${DOTFILES}/.zsh-prompt" ]; then
-	. "${DOTFILES}/.zsh-prompt"
-fi
+# setup pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
-if [ -d "$HOME/.bin" ]; then
-  export PATH="$PATH:~/.bin"
-fi
+[[ -s /home/michael/.autojump/etc/profile.d/autojump.sh ]] \
+  && source /home/michael/.autojump/etc/profile.d/autojump.sh
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-if command -v go 1>/dev/null 2>&1; then
-  export GOPATH=$HOME/go
-  export PATH="$PATH:/$GOPATH/bin"
-fi
-
-if command -v bat 1>/dev/null 2>&1; then
-  # colored man pages
-  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-fi
-
-if command -v jenv 1>/dev/null 2>&1; then
-  export PATH="$HOME/.jenv/bin:$PATH"
-  eval "$(jenv init -)"
-fi
-
-if command -v nvm 1>/dev/null 2>&1; then
-  export NVM_DIR="$HOME/.nvm" 
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
-fi
+#autoload -U compinit && compinit -u
