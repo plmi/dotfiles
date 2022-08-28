@@ -1,8 +1,8 @@
 #/usr/bin/env bash
 
 EDITOR="$(which nvim)"
-alias v=nvim
-alias vim=nvim
+alias v=vim
+alias vim=vim
 
 # configs
 alias bashrc="$EDITOR ~/.bashrc"
@@ -14,7 +14,7 @@ alias zshrc="$EDITOR ~/.zshrc"
 alias sb='. ~/.bashrc'
 alias bb='sudo shutdown -h now'
 alias brb='sudo shutdown -r now'
-alias fau='cd ~/fau/ws2021'
+alias fau='cd ~/fau/ss2022'
 alias ncm='ncmpcpp'
 alias open='xdg-open'
 
@@ -40,3 +40,5 @@ alias publicip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias yt='mpv --volume=50 --ytdl-format="bestvideo[height<=?480]+bestaudio/best"'
 alias tb='mpv --volume=25 "http://listen.technobase.fm/listen.mp3.m3u"'
 alias mp3dl='youtube-dl --extract-audio --audio-format mp3'
+
+alias nnn='nnn -e'
