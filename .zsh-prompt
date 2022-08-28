@@ -1,4 +1,1 @@
-PROMPT='%n %F{125}::%f %F{34}%~%f >> '
-
-# default prompt
-#PROMPT='%/ %# '
+PROMPT="%B%F{fff}[%n%f%F{red}@%F{fff}%m]%f %~%b "
