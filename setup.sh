@@ -30,3 +30,13 @@ fi
 if [ ! -f ~/.antigenrc ] && [ -f "${DOTFILES}/.antigenrc" ]; then
   ln -s "${DOTFILES}/.antigenrc" "${HOME}/.antigenrc"
 fi
+
+if [ ! -f "${HOME}/.local/share/wallpapers" ] && [ -f "${DOTFILES}/wallpapers" ]; then
+  mkdir -p "${HOME}/.local/share"
+  ln -s "${DOTFILES}/wallpapers" "${HOME}/.local/share/wallpapers"
+fi
+
+if [ ! -f "${HOME}/.local/bin" ] && [ -f "${DOTFILES}/.local/bin" ]; then
+  mkdir -p "${HOME}/.local"
+  ln -s "${DOTFILES}/.local/bin" "${HOME}/.local/bin"
+fi
