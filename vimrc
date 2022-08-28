@@ -46,19 +46,27 @@ nmap <leader>q :q<cr>
 nmap QQ :q!<cr>
 
 " latex bindings
-autocmd FileType tex inoremap ;em \emph{}<Space>(<++>)<Esc>T{i
-autocmd FileType tex inoremap ;bf \textbf{}<++><Esc>T{i
-"autocmd FileType tex inoremap ;bf \textbf{}<Space>(<>)<Esc>T{i
-autocmd FileType tex inoremap ;it \textit{}<Space>(<>)<Esc>T{i
-autocmd FileType tex inoremap ;sec \section{}<Enter><Enter>(<>)<Esc>2kf}i
+" autocmd FileType tex inoremap ;em \emph{}<Space>(<++>)<Esc>T{i
+autocmd FileType tex inoremap ;em \emph{}<Esc>T{i
+autocmd FileType tex inoremap ;it \textit{}<Esc>T{i
+autocmd FileType tex inoremap ;bf \textbf{}<Esc>T{i
+autocmd FileType tex inoremap ;ct \cite{}<Esc>T{i
+autocmd FileType tex inoremap ;big \bigskip<Esc>
+autocmd FileType tex inoremap ;href \href{}<Esc>T{i
+autocmd FileType tex inoremap ;ref \hyperref[sec:]{}<Esc>T:i
+autocmd FileType tex inoremap ;lbl \label{sec:}<Esc>T:i
+autocmd FileType tex inoremap ;sec \section{}<Enter><Enter><Esc>2kf}i
+autocmd FileType tex inoremap ;ssec \subsection{}<Enter><Enter><Esc>2kf}i
+autocmd FileType tex inoremap ;sssec \subsubsection{}<Enter><Enter><Esc>2kf}i
 
 " no more replacing chaos
-autocmd * inoremap ;a ä
-autocmd * inoremap ;A Ä
-autocmd * inoremap ;u ü
-autocmd * inoremap ;U Ü
-autocmd * inoremap ;o ö
-autocmd * inoremap ;O Ö
+imap ;a ä
+imap ;A Ä
+imap ;u ü
+imap ;U Ü
+imap ;o ö
+imap ;O Ö
+imap ;s ß
 
 " move by visual line, don't skip fake lines
 noremap j gj
@@ -72,3 +80,14 @@ cnoreabbrev wbn Wbn
 
 set background=dark
 set t_Co=256
+
+" spell check
+
+"if v:version >= 700
+	"Sets in-line spellchecking
+	"set spell
+
+	" Set local language 
+	"setlocal spell spelllang=en_us,de
+	"setlocal spell spelllang=da
+"endif
