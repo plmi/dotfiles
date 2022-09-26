@@ -21,7 +21,8 @@ dateTime() {
 
 disk() {
   device="/dev/sda3"
-  df -h | grep "$device" | awk '{print $3 "/" $4}'
+  usage=$(df -h 2> /dev/null | grep "$device" | awk '{print $3 "/" $2}')
+  echo -e " $usage"
 }
 
 weather() {
@@ -45,4 +46,14 @@ essid() {
   echo -e "$ssid"
 }
 
-xsetroot -name "$(disk) | $(ip) | $(updates) | $(up) | $(weather) | $(dateTime)"
+battery() {
+  remaining=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 \
+    | grep "to empty" | awk -F "," '{ print $1 }' | grep -oE "[0-9]+")
+  if [ -z "$remaining" ]; then
+    echo -e ""
+  else
+    echo -e " $remaining" min
+  fi
+}
+
+xsetroot -name "$(disk) | $(ip) | $(updates) | $(up) | $(battery) | $(dateTime)"
