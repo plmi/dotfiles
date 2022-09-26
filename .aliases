@@ -17,6 +17,8 @@ alias brb='sudo shutdown -r now'
 alias fau='cd ~/fau/ss2022'
 alias ncm='ncmpcpp'
 alias open='xdg-open'
+alias nnn='nnn -e'
+alias f='nnn -e'
 
 # directory
 alias ..='cd ..'
@@ -41,4 +43,5 @@ alias yt='mpv --volume=50 --ytdl-format="bestvideo[height<=?480]+bestaudio/best"
 alias tb='mpv --volume=25 "http://listen.technobase.fm/listen.mp3.m3u"'
 alias mp3dl='youtube-dl --extract-audio --audio-format mp3'
 
-alias nnn='nnn -e'
+alias vol3='python /opt/volatility3/vol.py'
+alias vol2='python /opt/volatility/vol.py'
