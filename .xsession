@@ -1,13 +1,16 @@
-# status bar
-while xsetroot -solid black -name "`date +"%d. %b %H:%M"` `uptime | cut -d ' ' -f5 | set 's/,//'`"; do
-	sleep 20
-done &
-
-# make ghidra work
+export ANKI_NOHIGHDPI=1
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-redshift &
-firefox &
-thunderbird &
+while true; do
+  /home/michael/.local/bin/statusbar.sh
+  sleep 1m
+done &
 
+python3 /home/michael/.local/bin/set_screen.py
+set_wallpaper &
+redshift &
+picom &
+/home/michael/.local/bin/calibre-start &
+google-chrome &
+thunderbird &
 exec dwm
