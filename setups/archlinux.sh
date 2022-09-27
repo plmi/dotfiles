@@ -87,8 +87,9 @@ function install_vmware_workstation {
 }
 
 function install_browserpass {
-  sudo pacman -S --noconfirm browserpass && \
-  echo y | LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm" -S browserpass-chrome
+  sudo pacman -S --noconfirm browserpass qt5-base && \
+  echo y | LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm" -S browserpass-chrome && \
+  echo 'pinentry-program /usr/bin/pinentry-qt' > "$HOME/.gnupg/gpg-agent.conf"
 }
 
 mkdir -p $HOME/.local/src
