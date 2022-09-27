@@ -32,8 +32,8 @@ function install_dwm {
   DWM_FOLDER="$1"
   checkout "https://github.com/plmi/dwm-arch.git" "$DWM_FOLDER" && \
     cd "$DWM_FOLDER" && git apply dwm-scratchpad-6.3.patch && \
-    make && sudo make clean install && echo -e "#!/bin/bash\n\nexec dwm" > $HOME/.xinitrc && \
-    chmod +x "$HOME/.xinitrc"
+    make && \
+    sudo make clean install 
 #    echo | tee /usr/share/xsessions/dwm.desktop << EndOfMessage
 #[Desktop Entry]
 #Encoding=UTF-8
