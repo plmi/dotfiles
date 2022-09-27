@@ -102,14 +102,14 @@ SOURCE_DIRECTORY="$HOME/.local/src"
 
 install_common && \
 install_yay "$HOME/.local/src/yay" && install_aur_packages \
-#install_java && \
+install_java && \
 install_zsh && \
 install_dwm "$SOURCE_DIRECTORY/dwm" && \
 install_dmenu "$SOURCE_DIRECTORY/dmenu" && \
 install_st "$SOURCE_DIRECTORY/st" && \
 setup_dotfiles && \
-#fix_vmware && \
+fix_vmware && \
 install_ssh && \
-#install_pyenv && \
-#install_blackarch && install_pentest_tools &&
+install_pyenv && \
+install_blackarch && install_pentest_tools &&
 echo -e "\033[0;32m[+] setup successfully finished\033[0m"
