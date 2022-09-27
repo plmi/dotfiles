@@ -83,7 +83,7 @@ mkdir -p $HOME/.local/src
 SOURCE_DIRECTORY="$HOME/.local/src"
 
 install_common && \
-install_yay "$HOME/.local/src/yay" && install_aur_packages \
+install_yay "$HOME/.local/src/yay" && install_aur_packages && \
 install_zsh && \
 install_dwm "$SOURCE_DIRECTORY/dwm" && \
 install_dmenu "$SOURCE_DIRECTORY/dmenu" && \
