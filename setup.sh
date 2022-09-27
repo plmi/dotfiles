@@ -44,7 +44,7 @@ if [ ! -f "${HOME}/.local/share/wallpapers" ] && [ -f "${DOTFILES}/wallpapers" ]
   ln -s "${DOTFILES}/wallpapers" "${HOME}/.local/share/wallpapers"
 fi
 
-if [ ! -f "${HOME}/.local/bin" ] && [ -f "${DOTFILES}/.local/bin" ]; then
+if [ ! -d "${HOME}/.local/bin" ] && [ -d "${DOTFILES}/.local/bin" ]; then
   mkdir -p "${HOME}/.local"
   ln -s "${DOTFILES}/.local/bin" "${HOME}/.local/bin"
 fi
