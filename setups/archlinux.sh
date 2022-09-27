@@ -86,6 +86,11 @@ function install_vmware_workstation {
   sudo modprobe -a vmw_vmci vmmon
 }
 
+function install_browserpass {
+  sudo pacman -S --noconfirm browserpass && \
+  echo y | LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm" -S browserpass-chrome
+}
+
 mkdir -p $HOME/.local/src
 SOURCE_DIRECTORY="$HOME/.local/src"
 
@@ -100,4 +105,5 @@ install_ssh && \
 install_pyenv && \
 install_anki && \
 install_vmware_workstation && \
+install_browserpass && \
 echo -e "\033[0;32m[+] setup successfully finished\033[0m"
