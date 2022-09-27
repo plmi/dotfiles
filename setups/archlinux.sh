@@ -79,6 +79,13 @@ function install_anki {
   sudo pacman --noconfirm --needed -S libxcb xcb-util-wm xcb-util-keysyms xcb-util-renderutil
 }
 
+function install_vmware_workstation {
+  sudo pacman -S --noconfirm linux-headers && \
+  echo y | LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm" -S vmware-workstation && \
+  sudo systemctl enable vmware-networks.service && \
+  sudo modprobe -a vmw_vmci vmmon
+}
+
 mkdir -p $HOME/.local/src
 SOURCE_DIRECTORY="$HOME/.local/src"
 
@@ -92,4 +99,5 @@ setup_dotfiles && \
 install_ssh && \
 install_pyenv && \
 install_anki && \
+install_vmware_workstation && \
 echo -e "\033[0;32m[+] setup successfully finished\033[0m"
