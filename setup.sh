@@ -27,6 +27,14 @@ if [ ! -f ~/.xsession ] && [ -f "${DOTFILES}/.xsession" ]; then
   ln -s "${DOTFILES}/.xsession" "${HOME}/.xsession"
 fi
 
+if [ ! -f ~/.zprofile ] && [ -f "${DOTFILES}/.zprofile" ]; then
+  ln -s "${DOTFILES}/.zprofile" "${HOME}/.zprofile"
+fi
+
+if [ ! -f ~/.xinitrc ] && [ -f "${DOTFILES}/.xinitrc" ]; then
+  ln -s "${DOTFILES}/.xinitrc" "${HOME}/.xinitrc"
+fi
+
 if [ ! -f ~/.antigenrc ] && [ -f "${DOTFILES}/.antigenrc" ]; then
   ln -s "${DOTFILES}/.antigenrc" "${HOME}/.antigenrc"
 fi
