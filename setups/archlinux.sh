@@ -92,6 +92,10 @@ function install_browserpass {
   echo 'pinentry-program /usr/bin/pinentry-qt' > "$HOME/.gnupg/gpg-agent.conf"
 }
 
+function install_music {
+  sudo pacman -S --noconfirm --needed mpc mpd ncmpcpp
+}
+
 mkdir -p $HOME/.local/src
 SOURCE_DIRECTORY="$HOME/.local/src"
 
