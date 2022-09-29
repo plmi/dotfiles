@@ -10,6 +10,7 @@ python3 /home/michael/.local/bin/set_screen.py
 set_wallpaper &
 redshift &
 picom &
+dunst &
 /home/michael/.local/bin/calibre-start &
 google-chrome &
 thunderbird &
