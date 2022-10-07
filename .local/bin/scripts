@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+# show courses and scripts in dmenu
+
+ROOT_DIR=/home/michael/fau
+SCRIPT_FILE="${ROOT_DIR}/current"
+COURSES=$(awk '{ print $1 }' "$SCRIPT_FILE")
+SCRIPTS=$(cat "$SCRIPT_FILE" | sed 's/.*\///')
+
+# dmenu can't render \t: use expand
+SELECTION=$(paste -d'\t' <(echo "$COURSES") <(echo "$SCRIPTS") | \
+  expand -t 4 | dmenu -l 20 | awk '{ print $2 }')
+
+grep "${SELECTION}" "${SCRIPT_FILE}" | \
+  echo "${ROOT_DIR}"/$(awk '{ print $2 }') | xargs xdg-open
