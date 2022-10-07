@@ -1,5 +1,5 @@
 [Default Applications]
-application/pdf=org.pwmt.zathura-pdf-poppler.desktop
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
 image/png=/usr/share/applications/sxiv.desktop
 text/html=google-chrome.desktop
 x-scheme-handler/http=google-chrome.desktop
