@@ -2,7 +2,7 @@
 
 function install_common {
   sudo pacman -Syu --noconfirm && sudo pacman -S --noconfirm git pacman-contrib \
-    xorg-xinit xorg-server wget zip unzip tmux neofetch p7zip zathura \
+    xorg-xinit xorg-server wget zip unzip tmux neofetch p7zip zathura zathura-pdf-mupdf \
     obsidian redshift xwallpaper openvpn xclip sxiv pass unzip xorg-xsetroot dunst
 }
 
