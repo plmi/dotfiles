@@ -97,6 +97,16 @@ function install_pyenv {
     checkout "https://github.com/pyenv/pyenv.git" "$HOME/.pyenv"
 }
 
+function install_wireshark {
+  sudo pacman -S --noconfirm wireshark-qt
+  # https://wiki.wireshark.org/CaptureSetup/CapturePrivileges
+  sudo groupadd -s wireshark
+  sudo gpasswd -a $USER wireshark
+  sudo chgrp wireshark /usr/sbin/dumpcap
+  sudo chmod o-rx /usr/sbin/dumpcap
+}
+
+
 mkdir -p $HOME/.local/src
 SOURCE_DIRECTORY="$HOME/.local/src"
 
