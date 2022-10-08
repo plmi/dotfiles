@@ -98,12 +98,13 @@ function install_pyenv {
 }
 
 function install_wireshark {
-  sudo pacman -S --noconfirm wireshark-qt
+  sudo pacman -S --noconfirm wireshark-qt && \
   # https://wiki.wireshark.org/CaptureSetup/CapturePrivileges
-  sudo groupadd -s wireshark
-  sudo gpasswd -a $USER wireshark
-  sudo chgrp wireshark /usr/sbin/dumpcap
-  sudo chmod o-rx /usr/sbin/dumpcap
+  sudo groupadd -s wireshark && \
+  sudo gpasswd -a $USER wireshark && \
+  sudo chgrp wireshark /usr/sbin/dumpcap && \
+  sudo chmod o-rx /usr/sbin/dumpcap && \
+  sudo setcap cap_net_raw,cap_net_admin+eip /usr/sbin/dumpcap
 }
 
 
