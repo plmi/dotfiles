@@ -97,6 +97,11 @@ function install_music {
   sudo pacman -S --noconfirm --needed mpc mpd ncmpcpp
 }
 
+function install_docker {
+  sudo pacman -S --noconfirm --needed docker docker-compose && \
+  sudo usermod -aG docker $USER
+}
+
 mkdir -p $HOME/.local/src
 SOURCE_DIRECTORY="$HOME/.local/src"
 
