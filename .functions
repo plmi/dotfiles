@@ -49,3 +49,8 @@ mkdirs() {
 open() {
   xdg-open "$1" &!
 }
+
+jupyterlab() {
+  # &: run process in background, !: disown equivalent in zsh
+  jupyter-lab --no-browser --LabApp.token='' --ip=127.0.0.1 --port 8888 --notebook-dir="$1" > /dev/null 2>&1 &!
+}
