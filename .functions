@@ -45,3 +45,7 @@ noword() {
 mkdirs() {
   mkdir {exploit,loot,report,scans}
 }
+
+open() {
+  xdg-open "$1" &!
+}

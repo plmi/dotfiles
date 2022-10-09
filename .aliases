@@ -16,7 +16,6 @@ alias bb='sudo shutdown -h now'
 alias brb='sudo shutdown -r now'
 alias fau='cd ~/fau/ss2022'
 alias ncm='ncmpcpp'
-alias open='xdg-open'
 alias nnn='nnn -e'
 alias f='nnn -e'
 
