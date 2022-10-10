@@ -23,6 +23,10 @@ if [ ! -f ~/.config/redshift.conf ] && [ -f "${DOTFILES}/.config/redshift.conf" 
   ln -s "${DOTFILES}/.config/redshift.conf" "${HOME}/.config/redshift.conf"
 fi
 
+if [ ! -f ~/.config/mimeapps.list ] && [ -f "${DOTFILES}/.config/mimeapps.list" ]; then
+  ln -s "${DOTFILES}/.config/mimeapps.list" "${HOME}/.config/mimeapps.list"
+fi
+
 if [ ! -f ~/.xsession ] && [ -f "${DOTFILES}/.xsession" ]; then
   ln -s "${DOTFILES}/.xsession" "${HOME}/.xsession"
 fi
