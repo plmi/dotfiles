@@ -4,7 +4,7 @@ function install_common {
   sudo pacman -Syu --noconfirm && sudo pacman -S --noconfirm git pacman-contrib \
     xorg-xinit xorg-server wget zip unzip tmux neofetch p7zip zathura zathura-pdf-mupdf \
     obsidian redshift xwallpaper openvpn xclip sxiv pass unzip xorg-xsetroot dunst \
-    net-tools inetutils maim
+    net-tools inetutils maim inotify-tools
 }
 
 function setup_dotfiles {
@@ -100,6 +100,15 @@ function install_music {
 function install_docker {
   sudo pacman -S --noconfirm --needed docker docker-compose && \
   sudo usermod -aG docker $USER
+}
+
+function install_latex {
+  sudo pacman -S --noconfirm --needed texlive-most
+}
+
+function set_timezone {
+  TIMEZONE="Europe/Berlin"
+  sudo timedatectl set-timezone "$TIMEZONE"
 }
 
 mkdir -p $HOME/.local/src
