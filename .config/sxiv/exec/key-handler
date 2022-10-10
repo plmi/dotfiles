@@ -6,7 +6,8 @@ while read file
 do
   case "$1" in
     "C-c")
-      xclip -selection clipboard "$file" -t image/png
+      xclip -selection clipboard "$file" -t image/png && \
+      dunstify "sxiv" "Copied image to clipboard!"
       ;;
   esac
 done
