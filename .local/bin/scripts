@@ -10,7 +10,7 @@ FONT='JetBrainsMono\ Nerd\ Font-9'
 
 # dmenu can't render \t: use expand
 SELECTION=$(paste -d'\t' <(echo "$COURSES") <(echo "$SCRIPTS") | \
-  expand -t 4 | dmenu -l 20 -fn "$FONT"  | awk '{ print $2 }')
+  expand -t 4 | dmenu -l 20 -fn "$FONT" | awk '{ print $2 }')
 
 grep "${SELECTION}" "${SCRIPT_FILE}" | \
   echo "${ROOT_DIR}"/$(awk '{ print $2 }') | xargs xdg-open
