@@ -111,6 +111,15 @@ function set_timezone {
   sudo timedatectl set-timezone "$TIMEZONE"
 }
 
+function setup_hp_printer {
+  sudo pacman -S --noconfirm --needed cups avahi hplip && \
+  sudo systemctl enable cup && \
+  sudo systemctl start cups && \
+  sudo systemctl enable avahi-daemon && \
+  sudo systemctl start avahi-daemon
+  # visit https://localhost:631/ > Administration > Add Printer
+}
+
 mkdir -p $HOME/.local/src
 SOURCE_DIRECTORY="$HOME/.local/src"
 
