@@ -18,7 +18,6 @@ alias fau='cd ~/fau/ss2022'
 alias ncm='ncmpcpp'
 alias nnn='nnn -e'
 alias f='nnn -e'
-alias el='exa -l --sort newest --group-directories-first --classify'
 #alias rcp='rsync -ah --info=progress2 --append-verify --stats'
 #alias rmv='rsync -ah --info=progress2 --append-verify --remove-source-files --stats'
 
@@ -27,9 +26,11 @@ alias ..='cd ..'
 
 # directory listing
 color=$([[ "$OSTYPE" == "darwin"* ]] && echo -n "-G" || echo -n "--color=auto")
-alias ls="ls ${color}"
-alias la="ls -ld .* ${color}"
-alias ll="ls -lt ${color}"
+hash exa 2>/dev/null && \
+  alias ll='exa --long --header --binary --modified --time-style=long-iso --all --sort=.name  --group-directories-first'
+#alias ls="ls ${color}"
+#alias la="ls -ld .* ${color}"
+#alias ll="ls -lt ${color}"
 alias dirsize="du -csh * | sort -n"
 
 # search
