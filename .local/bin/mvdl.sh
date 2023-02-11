@@ -21,7 +21,7 @@ DESTINATION_DIRECTORY="$2"
 UNPACK_PREFIX="_UNPACK"
 FAILED_PREFIX="_FAILED"
 readarray -d '' DIRECTORIES < <(find "$SOURCE_DIRECTORY" -mindepth 1 -maxdepth 1 -type d \
-  -not \( -name "${UNPACK_PREFIX}*" -or -name "${FAILED_PREFIX}" \) -print0)
+  -not \( -name "${UNPACK_PREFIX}*" -or -name "${FAILED_PREFIX}*" \) -print0)
 
 log_info "Start moving ${#DIRECTORIES[@]} directories to ${DESTINATION_DIRECTORY}"
 for directory in "${DIRECTORIES[@]}"; do
