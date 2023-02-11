@@ -12,6 +12,7 @@ set showmatch           " show matching braces
 set title               " show terminal title
 set wildmenu            " menu for tab completion
 set wildmode=list:full  " list for wildcard completion
+set showmatch           " show matching part of () [] {}
 
 " FOLDING
 "
@@ -50,6 +51,7 @@ nmap QQ :q!<cr>
 autocmd FileType tex inoremap ;em \emph{}<Esc>T{i
 autocmd FileType tex inoremap ;it \textit{}<Esc>T{i
 autocmd FileType tex inoremap ;bf \textbf{}<Esc>T{i
+autocmd FileType tex inoremap ;tt \texttt{}<Esc>T{i
 autocmd FileType tex inoremap ;ct \cite{}<Esc>T{i
 autocmd FileType tex inoremap ;big \bigskip<Esc>
 autocmd FileType tex inoremap ;href \href{}<Esc>T{i
@@ -58,6 +60,10 @@ autocmd FileType tex inoremap ;lbl \label{sec:}<Esc>T:i
 autocmd FileType tex inoremap ;sec \section{}<Enter><Enter><Esc>2kf}i
 autocmd FileType tex inoremap ;ssec \subsection{}<Enter><Enter><Esc>2kf}i
 autocmd FileType tex inoremap ;sssec \subsubsection{}<Enter><Enter><Esc>2kf}i
+autocmd FileType tex inoremap ;list \begin{itemzie}<Enter><Tab>\item<Enter>\end{itemize}<Esc>2kf}i
+
+" remove trailing whitespaces from python files
+autocmd BufWritePre *.py :%s/\s\+$//e
 
 " no more replacing chaos
 imap ;a ä
