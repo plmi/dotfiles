@@ -47,10 +47,23 @@ mkdirs() {
 }
 
 open() {
-  xdg-open "$1" &!
+  if [ "${1##*.}" = "pdf" ] && command -v tabbedzathura > /dev/null; then
+    tabbedzathura "$1"
+  else
+    xdg-open "$1" &!
+  fi
 }
 
 jupyterlab() {
   # &: run process in background, !: disown equivalent in zsh
   jupyter-lab --no-browser --LabApp.token='' --ip=127.0.0.1 --port 8888 --notebook-dir="$1" > /dev/null 2>&1 &!
+}
+
+function rmv {
+  rsync -ah --info=progress2 --append-verify --remove-source-files --stats $1 $2 && \
+    find $1 -type d -empty -print -delete
+}
+
+function bindiff {
+  colordiff -y <(xxd "$1") <(xxd "$2")
 }
