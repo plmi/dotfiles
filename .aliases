@@ -18,6 +18,9 @@ alias fau='cd ~/fau/ss2022'
 alias ncm='ncmpcpp'
 alias nnn='nnn -e'
 alias f='nnn -e'
+alias el='exa -l --sort newest --group-directories-first --classify'
+#alias rcp='rsync -ah --info=progress2 --append-verify --stats'
+#alias rmv='rsync -ah --info=progress2 --append-verify --remove-source-files --stats'
 
 # directory
 alias ..='cd ..'
@@ -40,6 +43,7 @@ alias publicip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 alias yt='mpv --volume=50 --ytdl-format="bestvideo[height<=?480]+bestaudio/best"'
 alias tb='mpv --volume=25 "http://listen.technobase.fm/listen.mp3.m3u"'
+alias lofi='mpv --volume=25 --no-video "https://www.youtube.com/watch?v=rUxyKA_-grg"'
 alias mp3dl='youtube-dl --extract-audio --audio-format mp3'
 
 alias vol3='python /opt/volatility3/vol.py'
