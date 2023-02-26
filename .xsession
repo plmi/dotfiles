@@ -12,6 +12,7 @@ redshift &
 picom &
 dunst &
 /home/michael/.local/bin/calibre-start &
+/home/michael/.local/bin/gitea-start &
 google-chrome &
 thunderbird &
 exec dwm
