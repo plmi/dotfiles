@@ -1,6 +1,6 @@
 [user]
-	name = plmi
-	email = 65455617+plmi@users.noreply.github.com
+  name = plmi
+  email = 65455617+plmi@users.noreply.github.com
 [alias]
   st = status
   co = checkout
@@ -12,5 +12,5 @@
   delremote = push origin --delete
   fap = fetch --all --prune
 [core]
-	editor = nvim
-	autocrlf = input
+  editor = nvim
+  autocrlf = input
