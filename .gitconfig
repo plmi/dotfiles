@@ -13,3 +13,4 @@
   fap = fetch --all --prune
 [core]
 	editor = nvim
+	autocrlf = input
