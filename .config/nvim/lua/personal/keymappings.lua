@@ -37,9 +37,13 @@ vim.keymap.set('n', '<leader>q', ':q<cr>', {})
 vim.keymap.set('n', 'QQ', ':q!<cr>', {})
 vim.keymap.set('n', '<C-c>', ':nohl<cr><C-l>:echo "Search cleared!"<cr>', { noremap = true, silent = true })
 
--- navigation quickfix list
+-- navigate quickfix list
 vim.keymap.set('n', '<C-j>', ':cnext<cr>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-k>', ':cprevious<cr>', { noremap = true, silent = true })
+
+-- navigate location list
+vim.keymap.set('n', '<C-j>', ':lnext<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-k>', ':lprev<cr>', { noremap = true, silent = true })
 
 -- substitute visual selection: https://stackoverflow.com/a/676619/14634871
 vim.keymap.set('v', '<C-r>', '"hy:%s/<C-r>h//g<left><left>', { noremap = true })
@@ -65,3 +69,9 @@ vim.keymap.set('i', ';U', 'Ü', {})
 vim.keymap.set('i', ';o', 'ö', {})
 vim.keymap.set('i', ';O', 'Ö', {})
 vim.keymap.set('i', ';s', 'ß', {})
+
+-- diagnostic
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
