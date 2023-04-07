@@ -14,9 +14,7 @@ wo.number = true
 local bo = vim.bo
 bo.autoindent = true
 
-local o = vim.o
-o.termguicolors = true
+-- local o = vim.o
+-- o.termguicolors = true
 
-
--- vimspector
-vim.g.vimspector_enable_mappings = 'HUMAN'
+vim.cmd.colorscheme "catppuccin"

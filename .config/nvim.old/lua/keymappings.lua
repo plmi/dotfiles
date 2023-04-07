@@ -56,21 +56,6 @@ vim.api.nvim_set_keymap('t', 'jk', '<C-\\><C-n>', { noremap = false })
 -- does not work?
 -- vim.api.nvim_set_keymap('t', '<leader>t', '<cmd>term ++close<cr>', {})
 
--- telescope
-vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope find_files<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>fs', ':Telescope grep_string search=', {})
-vim.api.nvim_set_keymap('n', '<c-_>', '<cmd>lua require(\'tele\').current_buffer_find()<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>fr', '<cmd>Telescope lsp_references<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>gd', '<cmd>Telescope lsp_definitions<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>gp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>Telescope lsp_code_actions<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>fa', '<cmd>lua vim.lsp.buf.formatting()<cr>', {})
---vim.api.nvim_set_keymap('n', '<leader>fs', '<cmd>lua vim.lsp.buf.range_formatting()<cr>', {})
-
 -- vimspector
 vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>call vimspector#Launch()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>dx', '<cmd>VimspectorReset<cr>', {})

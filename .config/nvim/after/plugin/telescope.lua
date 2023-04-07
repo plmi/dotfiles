@@ -1,0 +1,18 @@
+local builtin = require('telescope.builtin')
+
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fs', function()
+	builtin.grep_string({ search = vim.fn.input("search=") });
+end)
+vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+vim.keymap.set('n', '<c-_>', '<cmd>lua require(\'tele\').current_buffer_find()<cr>', {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
+vim.keymap.set('n', '<leader>gd', builtin.lsp_definitions, {})
+vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', {})
+vim.keymap.set('n', '<leader>gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', {})
+vim.keymap.set('n', '<leader>gp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', {})
+--vim.keymap.set('n', '<leader>xx', builtin.lsp_code_actions, {})
+vim.keymap.set('n', '<leader>fa', '<cmd>lua vim.lsp.buf.formatting()<cr>', {})
+--vim.api.nvim_set_keymap('n', '<leader>fs', '<cmd>lua vim.lsp.buf.range_formatting()<cr>', {})
