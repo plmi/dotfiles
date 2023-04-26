@@ -17,7 +17,7 @@ vim.opt.termguicolors = true
 
 vim.wo.number = true
 vim.bo.autoindent = true
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
