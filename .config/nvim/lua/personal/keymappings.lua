@@ -70,8 +70,23 @@ vim.keymap.set('i', ';o', 'ö', {})
 vim.keymap.set('i', ';O', 'Ö', {})
 vim.keymap.set('i', ';s', 'ß', {})
 
+-- latex
+vim.keymap.set('i', ';em', '\\emph{}<Esc>T{i', { noremap = true })
+vim.keymap.set('i', ';it', '\\textit{}<Esc>T{i', { noremap = true })
+vim.keymap.set('i', ';bf', '\\textbf{}<Esc>T{i', { noremap = true })
+vim.keymap.set('i', ';tt', '\\texttt{}<Esc>T{i', { noremap = true })
+vim.keymap.set('i', ';ct', '\\cite{}<Esc>T{i', { noremap = true })
+vim.keymap.set('i', ';sec', '\\section{}<Enter><Enter><Esc>2kf}i', { noremap = true })
+vim.keymap.set('i', ';item',
+  '\\begin{itemize}<Enter>\\item<Enter>\\end{itemize}<Esc>1kA<Space>', { noremap = true })
+vim.keymap.set('i', ';enum',
+  '\\begin{enumerate}<Enter>\\item<Enter>\\end{enumerate}<Esc>1kA<Space>', { noremap = true })
+
 -- diagnostic
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
--- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set('n', '<leader>dn', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', {})
+vim.keymap.set('n', '<leader>dp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', {})
+vim.keymap.set('n', '<leader>fa', '<cmd>lua vim.lsp.buf.formatting()<cr>', {})
+--vim.api.nvim_set_keymap('n', '<leader>fs', '<cmd>lua vim.lsp.buf.range_formatting()<cr>', {})
