@@ -4,7 +4,7 @@ function install_common {
   sudo pacman -Syu --noconfirm && sudo pacman -S --noconfirm git pacman-contrib \
     xorg-xinit xorg-server wget zip unzip tmux neofetch p7zip zathura zathura-pdf-mupdf \
     obsidian redshift xwallpaper openvpn xclip sxiv pass unzip xorg-xsetroot dunst \
-    net-tools inetutils maim inotify-tools
+    net-tools inetutils maim inotify-tools zoxide
 }
 
 function setup_dotfiles {
@@ -55,7 +55,7 @@ function install_yay {
 
 function install_aur_packages {
   echo y | LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm" -S \
-    nerd-fonts-jetbrains-mono google-chrome powershell-bin autojump
+    nerd-fonts-jetbrains-mono google-chrome powershell-bin
 }
 
 function install_st {
