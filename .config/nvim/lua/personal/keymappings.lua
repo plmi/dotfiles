@@ -76,6 +76,7 @@ vim.keymap.set('i', ';it', '\\textit{}<Esc>T{i', { noremap = true })
 vim.keymap.set('i', ';bf', '\\textbf{}<Esc>T{i', { noremap = true })
 vim.keymap.set('i', ';tt', '\\texttt{}<Esc>T{i', { noremap = true })
 vim.keymap.set('i', ';ct', '\\cite{}<Esc>T{i', { noremap = true })
+vim.keymap.set('i', ';ref', '\\ref{}<Esc>T{i', { noremap = true })
 vim.keymap.set('i', ';sec', '\\section{}<Enter><Enter><Esc>2kf}i', { noremap = true })
 vim.keymap.set('i', ';item',
   '\\begin{itemize}<Enter>\\item<Enter>\\end{itemize}<Esc>1kA<Space>', { noremap = true })
