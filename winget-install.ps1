@@ -2,7 +2,7 @@
 # Usage: Winget-Install Package1.Package1,Package2.Package2
 
 function Winget-Install {
-	Param(
+  Param(
 		# List of packages to upgrade
 		[Parameter(Position = 0, Mandatory = $true)]
 		[string[]] $Packages
@@ -14,4 +14,4 @@ function Winget-Install {
 	}
 }
 
-Winget-Install Notepad++.Notepad++,7zip.7zip,Microsoft.WindowsTerminal,Microsoft.PowerShell,DominikReichl.KeePass,Google.Chrome
+Winget-Install Notepad++.Notepad++,7zip.7zip,Microsoft.WindowsTerminal,Microsoft.PowerShell,DominikReichl.KeePass,Google.Chrome,Microsoft.VisualStudioCode
