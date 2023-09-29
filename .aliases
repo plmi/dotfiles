@@ -1,8 +1,8 @@
 #/usr/bin/env bash
 
 EDITOR="$(which nvim)"
-alias v=vim
-alias vim=vim
+alias v=nvim
+alias vim=nvim
 
 # configs
 alias bashrc="$EDITOR ~/.bashrc"
@@ -45,7 +45,8 @@ alias publicip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias yt='mpv --volume=50 --ytdl-format="bestvideo[height<=?480]+bestaudio/best"'
 alias tb='mpv --volume=25 "http://listen.technobase.fm/listen.mp3.m3u"'
 alias lofi='mpv --volume=25 --no-video "https://www.youtube.com/watch?v=rUxyKA_-grg"'
-alias mp3dl='youtube-dl --extract-audio --audio-format mp3'
+#alias mp3dl='youtube-dl --extract-audio --audio-format mp3'
+alias mp3dl="yt-dlp -f 'ba' -x --audio-format mp3 -o '%(id)s.%(ext)s'"
 
 alias vol3='python /opt/volatility3/vol.py'
 alias vol2='python /opt/volatility/vol.py'
