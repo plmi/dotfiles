@@ -56,3 +56,8 @@ if [ ! -d "${HOME}/.local/bin" ] && [ -d "${DOTFILES}/.local/bin" ]; then
   mkdir -p "${HOME}/.local"
   ln -s "${DOTFILES}/.local/bin" "${HOME}/.local/bin"
 fi
+
+if [ -f "$HOME/dwm.desktop" ]; then
+  sudo cp "$HOME/dwm.desktop" /usr/share/xsessions/dwm.desktop
+fi
+
