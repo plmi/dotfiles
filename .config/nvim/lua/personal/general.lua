@@ -26,3 +26,7 @@ vim.opt.undofile = true
 
 -- respect my tabstop settings
 vim.g.python_recommended_style = 0
+
+-- spell checking
+vim.opt.spelllang = 'de'
+vim.opt.spellsuggest = 'best,9'
