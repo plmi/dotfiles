@@ -22,8 +22,8 @@ function source_when_exist() {
 source_when_exist "$HOME/dotfiles/.aliases"
 source_when_exist "$HOME/dotfiles/.functions"
 source_when_exist "$HOME/dotfiles/.zsh-prompt"
-source_when_exist "/usr/share/zsh/pluings/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source_when_exist "/usr/share/zsh/pluings/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source_when_exist "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source_when_exist "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 if hash zoxide 2> /dev/null; then
   eval "$(zoxide init --cmd j bash)"
