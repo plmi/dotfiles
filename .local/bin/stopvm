@@ -1,5 +1,0 @@
-#!/bin/bash
-
-VM_GUID=$(vboxmanage list vms | dmenu -i -l 10 | awk '{print $2}' | sed 's/[{}]//g')
-VBOXMANAGE_OPTIONS=("$VM_GUID" acpipowerbutton)
-vboxmanage controlvm "${VBOXMANAGE_OPTIONS[@]}"

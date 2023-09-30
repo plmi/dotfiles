@@ -1,7 +1,0 @@
-require('general')
-require('theme')
-require('keymappings')
-require('plugins')
-require('completion')
-require('snippets')
-require('tele')

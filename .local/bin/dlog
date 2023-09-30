@@ -1,3 +1,0 @@
-#!/bin/bash
-
-docker logs -f -n 50 "$1"
