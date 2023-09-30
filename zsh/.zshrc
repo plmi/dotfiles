@@ -19,9 +19,9 @@ function source_when_exist() {
   [ -f "$1" ] && source "$1"
 }
 
-source_when_exist "$HOME/dotfiles/.aliases"
-source_when_exist "$HOME/dotfiles/.functions"
-source_when_exist "$HOME/dotfiles/.zsh-prompt"
+source_when_exist "$HOME/dotfiles/zsh/.aliases"
+source_when_exist "$HOME/dotfiles/zsh/.functions"
+source_when_exist "$HOME/dotfiles/zsh/.zsh-prompt"
 source_when_exist "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source_when_exist "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
