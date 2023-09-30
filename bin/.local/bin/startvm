@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# uuids of vms that should start headless
+HEADLESS=("acbe8479-7166-4543-bc2f-8a379a8e57b9")
+
+VM_GUID=$(vboxmanage list vms | dmenu -i -l 10 | awk -F'[{}]' '$0=$2' | sed 's/[{}]//g')
+if printf '%s\n' "${HEADLESS[@]}" | grep -Fxq "$VM_GUID"; then
+  VBOXMANAGE_OPTIONS=("$VM_GUID" --type headless)
+else
+  VBOXMANAGE_OPTIONS=("$VM_GUID")
+fi
+
+vboxmanage startvm "${VBOXMANAGE_OPTIONS[@]}"

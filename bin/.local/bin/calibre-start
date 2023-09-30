@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker start `docker ps -f name=calibre-web -q -l`

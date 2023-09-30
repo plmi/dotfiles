@@ -1,0 +1,4 @@
+#!/bin/bash
+
+find ~/.local/share/wallpapers/ -type f -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \
+  | shuf -n1 | xargs xwallpaper --zoom

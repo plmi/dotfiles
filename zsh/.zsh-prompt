@@ -1,0 +1,1 @@
+PROMPT="%B%F{fff}[%n%f%F{red}@%F{fff}%m]%f %~%b "

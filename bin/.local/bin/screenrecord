@@ -1,0 +1,6 @@
+#!/bin/bash
+
+[[ -z "$1" ]] && echo "No file specified" && exit
+
+RESOLUTION=$(xrandr | grep '*' | awk '{ print $1 }')
+ffmpeg -video_size "$RESOLUTION" -framerate 25 -f x11grab -i :0.0 "$1"

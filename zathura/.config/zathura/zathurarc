@@ -1,0 +1,7 @@
+#include /home/michael/.config/zathura/theme
+
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+set font JetBrainsMono\ NerdFont
+set selection-clipboard clipboard
