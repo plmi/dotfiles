@@ -50,3 +50,5 @@ alias mp3dl="yt-dlp -f 'ba' -x --audio-format mp3 -o '%(id)s.%(ext)s'"
 
 alias vol3='python /opt/volatility3/vol.py'
 alias vol2='python /opt/volatility/vol.py'
+
+alias bathelp='bat --plain --language=help'

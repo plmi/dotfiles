@@ -71,3 +71,9 @@ function bindiff {
 function lstree {
   exa --long --tree --level=$1 $2
 }
+
+function help() {
+  # colored --help
+  # usage: help nmap
+  "$@" --help 2>&1 | bathelp
+}
