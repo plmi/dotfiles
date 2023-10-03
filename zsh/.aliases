@@ -54,3 +54,4 @@ alias vol2='python /opt/volatility/vol.py'
 alias bathelp='bat --plain --language=help'
 
 alias ff='find -type f -iname'
+alias clipboard='xclip -sel clipboard'
