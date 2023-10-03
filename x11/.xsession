@@ -9,4 +9,5 @@ dunst &
 chromium &
 thunderbird &
 xrdb -merge /home/michael/.Xresources &
+dwmblocks &
 exec dwm
