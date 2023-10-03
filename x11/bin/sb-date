@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ICON="󰸘"
+echo -n "${ICON} " && 
+  date "+%a %H:%M %d.%m."

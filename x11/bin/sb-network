@@ -1,0 +1,20 @@
+#!/bin/bash
+
+ICON_ETH="󰈀"
+ICON_WIFI=""
+NAME_ETH="wired"
+NAME_WIFI="wifi"
+
+function get_ip_address_by_profile() {
+  PROFILE="$1"
+  [[ -z "$PROFILE" ]] && echo ''
+  nmcli -g ip4.address connection show "$PROFILE" 2> /dev/null | sed 's/\/.*//'
+}
+
+IP_ETH=$(get_ip_address_by_profile "$NAME_ETH")
+IP_WIFI=$(get_ip_address_by_profile "$NAME_WIFI")
+
+[[ ! -z "$IP_ETH" ]] && echo -n "${ICON_ETH} ${IP_ETH}"
+# add space if both are available
+[[ ! -z "$IP_ETH" && ! -z "$IP_WIFI" ]] && echo -n " "
+[[ ! -z "$IP_WIFI" ]] && echo -n "${ICON_WIFI} ${IP_WIFI}"

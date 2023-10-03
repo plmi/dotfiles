@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ICON="󰗶"
+echo -n "${ICON} " &&
+  uptime | awk '{print $3}' | sed 's/,//'

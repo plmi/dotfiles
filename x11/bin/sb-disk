@@ -1,0 +1,6 @@
+#!/bin/bash
+
+DEVICE=/dev/sda2
+ICON=""
+echo -n "$ICON " &&
+  df --si --output=avail "$DEVICE" | tail -n1 | awk '{$1=$1;print}'
