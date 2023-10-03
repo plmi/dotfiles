@@ -13,4 +13,5 @@ picom &
 dunst &
 chromium &
 thunderbird &
+xrdb -merge /home/michael/.Xresources &
 exec dwm
