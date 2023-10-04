@@ -68,8 +68,14 @@ function bindiff {
   colordiff -y <(xxd "$1") <(xxd "$2")
 }
 
-function lstree {
-  exa --long --tree --level=$1 $2
+function tree {
+  DEPTH_LEVEL=$(
+    find . -type d -not -path '*/.git'\
+      -exec bash -c 'echo $(tr -cd / <<< "$1"|wc -c):$1' -- {} \; | \
+      sort -n | tail -n 1 | awk -F: '{print $1+1}'
+  )
+  exa --git-ignore --tree --all --ignore-glob ".git" \
+	  --level="${DEPTH_LEVEL}" .
 }
 
 function help() {
@@ -77,3 +83,57 @@ function help() {
   # usage: help nmap
   "$@" --help 2>&1 | bathelp
 }
+
+function man() (
+  # man without arguments will use fzf to select a page
+  MAN="/usr/bin/man"
+  if [ -n "$1" ]; then
+    $MAN "$@"
+    return $?
+  else
+    $MAN -k . | fzf --reverse --prompt='Man> ' --preview="echo {1} | sed 's/(.*//' | xargs $MAN -P cat" | awk '{print $1}' | sed 's/(.*//' | xargs $MAN
+    return $?
+  fi
+)
+
+function fenv() {
+  # fuzzy find environment variables
+  local var
+  var=$(printenv | cut -d= -f1 | fzf --preview="printenv {1}") && echo "$var=${(P)var}"
+}
+
+function commands() {
+  # fuzzy find aliases and functions
+  CMD=$(
+    (
+      (alias)
+      (functions | grep "()" | cut -d ' ' -f1 | grep -v "^_")
+    ) | fzf | cut -d '=' -f1
+  )
+
+  eval $CMD
+}
+
+function pass() {
+  local PREFIX
+  PREFIX="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+  PASS="/usr/bin/pass"
+  if [ "$1" = "ff" ] && [ "$#" -eq 1 ]; then
+    pass -c $(rg --files "$PREFIX" | sed "s#$PREFIX/##" | sed "s#.gpg\$##" | sort | fzf)
+    return $?
+  else
+    $PASS "$@"
+    return $?
+  fi
+}
+
+# TODO: use this instead of current pass()?
+#_fzf_complete_pass() {
+#  _fzf_complete +m -- "$@" < <(
+#    local prefix
+#    prefix="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+#    command find -L "$prefix" \
+#      -name "*.gpg" -type f | \
+#      sed -e "s#${prefix}/\{0,1\}##" -e 's#\.gpg##' -e 's#\\#\\\\#' | sort
+#  )
+#}

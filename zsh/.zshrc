@@ -1,13 +1,9 @@
 autoload -U colors && colors
 
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
-
-export HISTFILE=~/.zsh_history
-export HISTSIZE=1000000
-export SAVEHIST=1000000
+#autoload -U compinit
+#zstyle ':completion:*' menu select
+#zmodload zsh/complist
+#compinit
 
 setopt HIST_IGNORE_ALL_DUPS     # no duplicates in history
 setopt HIST_SAVE_NO_DUPS        # don't save duplicates
@@ -24,7 +20,9 @@ source_when_exist "$HOME/dotfiles/zsh/.functions"
 source_when_exist "$HOME/dotfiles/zsh/.zsh-prompt"
 source_when_exist "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source_when_exist "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source_when_exist "/usr/share/fzf/key-bindings.zsh"
+source_when_exist "/usr/share/fzf/completion.zsh"
 
 if hash zoxide 2> /dev/null; then
-  eval "$(zoxide init --cmd j bash)"
+  eval "$(zoxide init --cmd j zsh)"
 fi
