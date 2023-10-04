@@ -11,6 +11,8 @@
   dellocal = branch -d
   delremote = push origin --delete
   fap = fetch --all --prune
+  fa = "!git ls-files --deleted --modified --other --exclude-standard | fzf -0 -m --preview 'git diff --color=always {-1}' | xargs -r git add"
+  fco = "!git branch --all | grep -v '^[*+]' | awk '{print $1}' | fzf -0 --preview 'git show --color=always {-1}' | sed 's/remotes\\/origin\\///g' | xargs -r git checkout"
 [core]
   editor = nvim
   autocrlf = input
