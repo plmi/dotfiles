@@ -1,3 +1,6 @@
+# editor
+export EDITOR="$(which vim)"
+
 # zsh
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
@@ -19,5 +22,4 @@ export BAT_THEME="Catppuccin-mocha"
 
 # fzf
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git" 2> /dev/null'
-#export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
