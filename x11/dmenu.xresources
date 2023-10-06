@@ -1,0 +1,4 @@
+dmenu.background: #000000
+dmenu.foreground: #ffffff
+dmenu.selbackground: #000000
+dmenu.selforeground: #cf4f88
