@@ -18,6 +18,7 @@ function source_when_exist() {
 source_when_exist "$HOME/dotfiles/zsh/.aliases"
 source_when_exist "$HOME/dotfiles/zsh/.functions"
 source_when_exist "$HOME/dotfiles/zsh/.zsh-prompt"
+source_when_exist "$HOME/dotfiles/zsh/.pyenv"
 source_when_exist "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source_when_exist "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source_when_exist "/usr/share/fzf/key-bindings.zsh"
