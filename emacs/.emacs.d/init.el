@@ -4,8 +4,10 @@
 (menu-bar-mode 0)
 ; disable toolbar
 (tool-bar-mode 0)
+; disable scrollbar
+(scroll-bar-mode 0)
 ; set auto-saving directory
-(setq backup-directory-alist '(("." . "/tmp/.emacs_saves")))
+(setq backup-directory-alist '(("/.emacs_saves")))
 ; configure interactive DO things
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -20,3 +22,6 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
+; configure nyan-mode
+(require 'nyan-mode)
+(nyan-mode)
