@@ -7,11 +7,13 @@
 ; disable scrollbar
 (scroll-bar-mode 0)
 ; set auto-saving directory
-(setq backup-directory-alist '(("/.emacs_saves")))
+(setq backup-directory-alist '(("/tmp/.emacs_saves")))
 ; configure interactive DO things
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
+; set font
+(set-frame-font "JetbrainsMono Nerd Font 12" nil t)
 ; use system clipboard
 (xclip-mode 1)
 ; move custom data out of init.el
@@ -25,3 +27,6 @@
 ; configure nyan-mode
 (require 'nyan-mode)
 (nyan-mode)
+; configure smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
