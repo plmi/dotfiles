@@ -24,9 +24,19 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-; configure nyan-mode
+; nyan-mode
 (require 'nyan-mode)
 (nyan-mode)
-; configure smex
+; smex
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+; evil mode
+(require 'evil)
+(evil-mode 0)
+(define-key evil-insert-state-map "jk" 'evil-normal-state)
+; enable theme
+(load-theme 'catppuccin :no-confirm)
+; enable doom-modeline
+(require 'doom-modeline)
+(doom-modeline-mode 1)
+(setq inhibit-compacting-font-caches t)
