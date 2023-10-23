@@ -25,8 +25,11 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- respect my tabstop settings
-vim.g.python_recommended_style = 0
+-- vim.g.python_recommended_style = 0
 
 -- spell checking
 vim.opt.spelllang = 'de'
 vim.opt.spellsuggest = 'best,9'
+
+-- theme
+vim.cmd.colorscheme "catppuccin"

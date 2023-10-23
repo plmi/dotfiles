@@ -1,3 +1,2 @@
-require("personal.general")
-require("personal.keymappings")
-require("personal.packer")
+require("personal.options")
+require("personal.keymaps")

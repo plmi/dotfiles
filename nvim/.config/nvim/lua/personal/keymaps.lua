@@ -27,9 +27,6 @@ vim.keymap.set('v', '<leader>y', '"+y')
 -- replace current word under cursor
 vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
--- 'chmod +x' current file
-vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
-
 -- bindings
 vim.keymap.set('i', 'jk', '<esc>', {})
 vim.keymap.set('n', '<leader>,', ':w<cr>', {})
@@ -82,12 +79,3 @@ vim.keymap.set('i', ';item',
   '\\begin{itemize}<Enter>\\item<Enter>\\end{itemize}<Esc>1kA<Space>', { noremap = true })
 vim.keymap.set('i', ';enum',
   '\\begin{enumerate}<Enter>\\item<Enter>\\end{enumerate}<Esc>1kA<Space>', { noremap = true })
-
--- diagnostic
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
-vim.keymap.set('n', '<leader>dn', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', {})
-vim.keymap.set('n', '<leader>dp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', {})
-vim.keymap.set('n', '<leader>fa', '<cmd>lua vim.lsp.buf.formatting()<cr>', {})
---vim.api.nvim_set_keymap('n', '<leader>fs', '<cmd>lua vim.lsp.buf.range_formatting()<cr>', {})
