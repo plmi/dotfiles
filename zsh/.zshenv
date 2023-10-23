@@ -1,4 +1,4 @@
-export EDITOR="$(which vim)"
+export EDITOR="$(which nvim)"
 export DOTFILES="$HOME/dotfiles"
 
 # path
