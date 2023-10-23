@@ -23,6 +23,7 @@ source_when_exist "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestion
 source_when_exist "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source_when_exist "/usr/share/fzf/key-bindings.zsh"
 source_when_exist "/usr/share/fzf/completion.zsh"
+source_when_exist "/usr/share/nvm/init-nvm.sh"
 
 if hash zoxide 2> /dev/null; then
   eval "$(zoxide init --cmd j zsh)"
