@@ -6,7 +6,7 @@ ROOT_DIR=/home/michael/fau
 SCRIPT_FILE="${ROOT_DIR}/current"
 COURSES=$(awk '{ print $1 }' "$SCRIPT_FILE")
 SCRIPTS=$(cat "$SCRIPT_FILE" | sed 's/.*\///')
-FONT='JetBrainsMono\ Nerd\ Font-9'
+FONT='JetBrainsMono\ Nerd\ Font\ Mono-10'
 
 # dmenu can't render \t: use expand
 SELECTION=$(paste -d'\t' <(echo "$COURSES") <(echo "$SCRIPTS") | \
