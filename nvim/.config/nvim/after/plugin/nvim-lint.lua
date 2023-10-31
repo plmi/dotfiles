@@ -13,13 +13,11 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
   group = lint_augroup,
   -- execute whenever one of the above events are triggered
   callback = function()
-    print('on event')
     require('lint').try_lint()
   end,
 })
 
 
 vim.keymap.set('n', '<leader>xl', function()
-  print('xl')
   lint.try_lint()
 end, { desc = 'Lint current file' })
