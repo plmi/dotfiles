@@ -78,5 +78,7 @@ require("lazy").setup({
       { 'L3MON4D3/LuaSnip' }
     },
   },
+  -- Linting
+  { 'mfussenegger/nvim-lint' }
 })
 require("personal")
