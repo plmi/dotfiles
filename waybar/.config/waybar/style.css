@@ -1,0 +1,36 @@
+@import "mocha.css";
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+  color: white;
+}
+
+window#waybar {
+  background-color: @base;
+}
+
+#workspaces button.active, #workspaces button.focused {
+  background: @lavender;
+}
+
+#tray,
+#mpd,
+#custom-weather,
+#cpu, 
+#temperature, 
+#memory,
+#sway-mode,
+#backlight, 
+#pulseaudio, 
+#custom-vpn,
+#disk,
+#custom-recorder,
+#custom-audiorec,
+#battery, 
+#clock, 
+#network,
+#custom-mpd,
+#custom-uptime {
+  padding: 0 8px;
+}

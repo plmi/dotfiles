@@ -1,0 +1,192 @@
+{
+  "layer": "top",
+  "position": "top",
+
+  "modules-left": [
+    "hyprland/workspaces",
+  ],
+  "hyprland/workspaces": {
+    "format": "{id}",
+    "disable-scroll": true,
+    "all-outputs": true,
+    "on-click": "activate",
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+    },
+  },
+
+  "custom/mpd": {
+    "format": "♪ {}",
+    "interval": 10, 
+    "exec": "mpc current", 
+    "exec-if": "pgrep mpd",
+    "on-click": "mpc toggle",
+    "on-click-right": "open-ncmpcpp-scratchpad"
+  },
+
+  "mpd": {
+    "max-length": 60,
+    "format": " {stateIcon} {randomIcon}{consumeIcon}{repeatIcon}{singleIcon}{title} ",
+    "format-disconnected": " Disconnected",
+    "format-stopped": " ■ {randomIcon}{consumeIcon}{repeatIcon}{singleIcon}Stopped ",
+    "unknown-tag": "N/A",
+    "interval": 2,
+    "consume-icons": {
+      "on": " "
+    },
+    "random-icons": {
+      "on": " "
+    },
+    "repeat-icons": {
+      "on": " "
+    },
+    "single-icons": {
+      "on": "1 "
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)",
+    "on-click": "mpc toggle",
+    "on-click-right": "cantata",
+    "on-scroll-down": "mpc next",
+    "on-scroll-up": "mpc prev",
+  },
+
+  "modules-center": [],
+  "hyprland/window": {
+    "format": "{}"
+  },
+
+  "modules-right": [
+    "pulseaudio",
+    "disk",
+    "battery",
+    "network",
+    "bluetooth",
+    "custom/uptime",
+    "clock",
+  ],
+  "pulseaudio": {
+    "scroll-step": 1,
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-bluetooth-muted": "{icon} {format_source}",
+    "format-muted": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "tooltip": false,
+    "on-click": "pavucontrol",
+    "on-click-right": "pamixer -t && mpc pause"
+  },
+
+  "clock": {
+    "interval": 1,
+    "format": "󰃭 {:%a %d.%m.  %H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "format": {
+	"months": "<span color='#ffead3'><b>{}</b></span>",
+	"days": "<span color='#ecc6d9'><b>{}</b></span>",
+	"weeks": "<span color='#99ffdd'><b>{}</b></span>",
+	"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+	"today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      }
+    }
+  },
+
+  "cpu": {
+    "format": " {usage}% ({load})",
+    "interval": 5,
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+  },
+
+  "memory": {
+    "interval": 5,
+    "format": " {}%",
+    "states": {
+      "critical": 91
+    }
+  },
+
+  "temperature": {
+    "critical-threshold": 75,
+    "interval": 5,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": [ "", "", "", "", "" ],
+    "tooltip": true
+  },
+
+  "tray": {
+    "icon-size": 15,
+    "spacing": 10
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""],
+  },
+
+  "bluetooth": {
+    "format": " {status}",
+    // an empty format will hide the module
+    "format-disabled": "",
+    "format-connected": " {num_connections}",
+    "format-connected-battery": " {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "blueman-manager",
+  },
+
+  "custom/uptime": {
+    "format": "󰔟 {}",
+    "exec": "uptime | awk '{print $3}'|sed 's/,//'",
+    "interval": 60
+  },
+
+  "network": {
+    "interval": 3,
+    "format-wifi": "  {essid}",
+    "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
+    "format-disconnected": "⚠ Disconnected",
+    "tooltip-format": "{ifname}: {ipaddr} (signal: {signalStrength}%)"
+  },
+
+  "disk": {
+    "interval": 10,
+    "format": " {percentage_used}%",
+    "path": "/",
+    "on-click": "dolphin"
+  },
+}

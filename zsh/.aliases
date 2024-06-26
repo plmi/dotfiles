@@ -38,3 +38,6 @@ alias yt='mpv --volume=50 --ytdl-format="bestvideo[height<=?480]+bestaudio/best"
 alias tb='mpv --volume=25 "http://listen.technobase.fm/listen.mp3.m3u"'
 alias lofi='mpv --volume=25 --no-video "https://www.youtube.com/watch?v=rUxyKA_-grg"'
 alias mp3dl="yt-dlp -f 'ba' -x --audio-format mp3 -o '%(id)s.%(ext)s'"
+
+# view images in terminal: icat <img>
+alias icat="kitty +kitten icat --align=left"
