@@ -18,9 +18,7 @@ alias functions="$EDITOR $DOTFILES/zsh/.functions"
 
 # directories
 alias ..='cd ..'
-alias fau='cd ~/fau/ws2023'
-hash exa 2>/dev/null && \
-  alias ll='exa --long --header --binary --modified --time-style=long-iso --all --sort=.name  --group-directories-first'
+alias ll='command -v exa &> /dev/null && exa --long --header --binary --modified --time-style=long-iso --all --sort=.name --group-directories-first || ls -lhtr --color'
 alias dirsize="du -csh * | sort -n"
 
 # search
@@ -41,3 +39,6 @@ alias mp3dl="yt-dlp -f 'ba' -x --audio-format mp3 -o '%(id)s.%(ext)s'"
 
 # view images in terminal: icat <img>
 alias icat="kitty +kitten icat --align=left"
+
+# avoid linking against pyenv-provided Python file
+alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
