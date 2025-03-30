@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.user.rclone.hetzner-encrypted</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/rclone</string>
+        <string>nfsmount</string>
+        <string>hetzner-encrypted:</string>
+        <string>/Users/michael/storage</string>
+        <string>--vfs-cache-mode=full</string>
+        <string>--vfs-refresh</string>
+        <string>--vfs-cache-max-size 10G</string>
+        <string>--vfs-read-ahead 32M</string>
+        <string>--vfs-cache-max-age 72h</string>
+        <string>--volname=storagebox</string>
+        <string>--log-level=INFO</string>
+        <string>--log-file=/Users/michael/Library/Logs/rclone-hetzner-mount.log</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <false/>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+    
+    <key>AbandonProcessGroup</key>
+    <true/>
+
+    </dict>
+</plist>
