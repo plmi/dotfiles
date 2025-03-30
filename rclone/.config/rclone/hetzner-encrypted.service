@@ -1,0 +1,25 @@
+[Unit]
+Description=Rclone Mount Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=exec
+User=michael
+Group=michael
+ExecStart=/usr/bin/rclone mount hetzner-encrypted: /home/michael/storage \
+    --vfs-cache-mode full \
+    --cache-dir /home/michael/.cache/rclone \
+    --vfs-cache-max-size 10G \
+    --vfs-read-ahead 32M \
+    --vfs-cache-max-age 72h \
+    --volname storagebox \
+    --log-level INFO \
+    --log-file /home/michael/.config/rclone/rclone-hetzner-mount.log \
+    --config /home/michael/.config/rclone/rclone.conf
+ExecStop=/usr/bin/fusermount -u /home/michael/storage
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
