@@ -18,13 +18,12 @@ alias functions="$EDITOR $DOTFILES/zsh/.functions"
 
 # directories
 alias ..='cd ..'
-alias ll='command -v exa &> /dev/null && exa --long --header --binary --modified --time-style=long-iso --all --sort=.name --group-directories-first || ls -lhtr --color'
+alias ll='command -v exa &> /dev/null && exa --long --header --binary --modified --time-style=long-iso --all --sort=.name --group-directories-first || ls -lha --color'
 alias dirsize="du -csh * | sort -n"
 
 # search
 alias grep='grep --color=auto'
 alias prettyjson='python -m json.tool'
-alias ff='find -type f -iname'
 
 # network
 alias pong='ping -c 2 8.8.8.8'
@@ -42,3 +41,4 @@ alias icat="kitty +kitten icat --align=left"
 
 # avoid linking against pyenv-provided Python file
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+alias wget='command -v wget2 &> /dev/null && wget2 || wget'

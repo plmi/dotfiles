@@ -3,6 +3,7 @@ export DOTFILES="$HOME/dotfiles"
 
 # path
 path+=("$DOTFILES/bin/.local/bin")
+path+=("$HOME/.dotnet/")
 export PATH
 
 # zsh
@@ -26,5 +27,16 @@ export MANROFFOPT="-c"
 export BAT_THEME="Catppuccin-mocha"
 
 # fzf
-export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git" 2> /dev/null'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git" 2> /dev/null'
+#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# brew
+export HOMEBREW_NO_ANALYTICS=1
+
+# sqlitebrowser
+export QT_SCALE_FACTOR=1
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+
+# burp
+export GDK_SCALE=2
+export QT_SCALE_FACTOR=2

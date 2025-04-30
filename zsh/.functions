@@ -114,17 +114,12 @@ function commands() {
   eval $CMD
 }
 
-function pass() {
+function paff() {
   local PREFIX
   PREFIX="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
-  PASS="/usr/bin/pass"
-  if [ "$1" = "ff" ] && [ "$#" -eq 1 ]; then
-    pass -c $(rg --files "$PREFIX" | sed "s#$PREFIX/##" | sed "s#.gpg\$##" | sort | fzf)
-    return $?
-  else
-    $PASS "$@"
-    return $?
-  fi
+  PASS="$(which pass)"
+  pass -c $(rg --files "$PREFIX" | sed "s#$PREFIX/##" | sed "s#.gpg\$##" | sort | fzf)
+  return $?
 }
 
 function what() {
