@@ -1,0 +1,106 @@
+# Start AeroSpace at login
+start-at-login = true
+
+after-login-command = [
+  'layout v_accordion',
+  'exec-and-forget open /opt/homebrew/bin/kitty',
+  'exec-and-forget open /Applications/Brave\ Browser.app',
+  'exec-and-forget open /Applications/Notion.app'
+]
+
+# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+default-root-container-layout = 'accordion'
+default-root-container-orientation = 'auto'
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
+accordion-padding = 0
+
+# Mouse follows focus when focused monitor changes
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+key-mapping.preset = 'qwerty'
+
+[gaps]
+  inner.horizontal = 0
+  inner.vertical =   0
+  outer.left =       0
+  outer.bottom =     0
+  outer.top =        0
+  outer.right =      0
+
+[mode.main.binding]
+  alt-s = 'layout v_accordion' # 'layout stacking'
+  alt-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
+  alt-h = 'focus left'
+  alt-j = 'focus down'
+  alt-k = 'focus up'
+  alt-l = 'focus right'
+
+  alt-tab = 'focus-back-and-forth'
+
+  # resize windows
+  alt-shift-h = 'resize smart -50'
+  alt-shift-l = 'resize smart +50'
+  alt-shift-j = 'resize smart-opposite -50'
+  alt-shift-k = 'resize smart-opposite +50'
+
+  alt-1 = 'workspace 1'
+  alt-2 = 'workspace 2'
+  alt-3 = 'workspace 3'
+  alt-4 = 'workspace 4'
+  alt-5 = 'workspace 5'
+
+  alt-shift-1 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 1'
+  alt-shift-2 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 2'
+  alt-shift-3 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 3'
+  alt-shift-4 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 4'
+  alt-shift-5 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 5'
+
+  # See: https://nikitabobko.github.io/AeroSpace/commands#mode
+  alt-semicolon = 'mode service'
+
+[mode.resize.binding]
+  h = 'resize width -50'
+  j = 'resize height +50'
+  k = 'resize height -50'
+  l = 'resize width +50'
+  enter = 'mode main'
+  esc = 'mode main'
+
+# 'service' binding mode declaration.
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.service.binding]
+  esc = ['reload-config', 'mode main']
+  r = ['flatten-workspace-tree', 'mode main'] # reset layout
+  #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
+  f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+  backspace = ['close-all-windows-but-current', 'mode main']
+
+  alt-shift-h = ['join-with left', 'mode main']
+  alt-shift-j = ['join-with down', 'mode main']
+  alt-shift-k = ['join-with up', 'mode main']
+  alt-shift-l = ['join-with right', 'mode main']
+
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'notion.id'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.install4j.9806-1938-4586-6531.70'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'org.whispersystems.signal-desktop'
+run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if.app-id = 'org.whispersystems.signal-desktop'
+run = 'move-node-to-workspace 5'
