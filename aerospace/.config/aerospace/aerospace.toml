@@ -3,7 +3,7 @@ start-at-login = true
 
 after-login-command = [
   'layout v_accordion',
-  'exec-and-forget open /opt/homebrew/bin/kitty',
+  'exec-and-forget open /System/Applications/Utilities/Terminal.app'
   'exec-and-forget open /Applications/Brave\ Browser.app',
   'exec-and-forget open /Applications/Notion.app'
 ]
@@ -104,3 +104,7 @@ run = 'move-node-to-workspace 5'
 [[on-window-detected]]
 if.app-id = 'org.whispersystems.signal-desktop'
 run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Terminal'
+run = 'move-node-to-workspace 1'
