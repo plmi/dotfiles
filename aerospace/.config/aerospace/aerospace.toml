@@ -1,16 +1,14 @@
-# Start AeroSpace at login
-start-at-login = true
-
-after-login-command = [
-  'layout v_accordion',
-  'exec-and-forget open /System/Applications/Utilities/Terminal.app'
+after-startup-command = [
+  'exec-and-forget open /System/Applications/Utilities/Terminal.app',
   'exec-and-forget open /Applications/Brave\ Browser.app',
-  'exec-and-forget open /Applications/Notion.app'
+  'exec-and-forget open /Applications/Notion.app',
+  'exec-and-forget open /System/Applications/Mail.app',
+  'layout v_accordion'
 ]
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 default-root-container-layout = 'accordion'
-default-root-container-orientation = 'auto'
+default-root-container-orientation = 'vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 accordion-padding = 0
@@ -22,20 +20,17 @@ key-mapping.preset = 'qwerty'
 
 [gaps]
   inner.horizontal = 0
-  inner.vertical =   0
-  outer.left =       0
-  outer.bottom =     0
-  outer.top =        0
-  outer.right =      0
+  inner.vertical   = 0
+  outer.left       = 0
+  outer.bottom     = 0
+  outer.top        = 0
+  outer.right      = 0
 
 [mode.main.binding]
-  alt-s = 'layout v_accordion' # 'layout stacking'
-  alt-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
-  alt-h = 'focus left'
-  alt-j = 'focus down'
-  alt-k = 'focus up'
-  alt-l = 'focus right'
-
+  alt-h = 'focus left --boundaries-action wrap-around-the-workspace'
+  alt-j = 'focus down --boundaries-action wrap-around-the-workspace'
+  alt-k = 'focus up --boundaries-action wrap-around-the-workspace'
+  alt-l = 'focus right --boundaries-action wrap-around-the-workspace'
   alt-tab = 'focus-back-and-forth'
 
   # resize windows
@@ -49,14 +44,20 @@ key-mapping.preset = 'qwerty'
   alt-3 = 'workspace 3'
   alt-4 = 'workspace 4'
   alt-5 = 'workspace 5'
+  alt-b = 'workspace b'
+  alt-u = 'workspace u'
+  alt-c = 'workspace c'
+  alt-v = 'workspace v'
 
   alt-shift-1 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 1'
   alt-shift-2 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 2'
   alt-shift-3 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 3'
   alt-shift-4 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 4'
   alt-shift-5 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 5'
+  alt-shift-b = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window b'
+  alt-shift-v = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window v'
+  alt-shift-c = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window c'
 
-  # See: https://nikitabobko.github.io/AeroSpace/commands#mode
   alt-semicolon = 'mode service'
 
 [mode.resize.binding]
@@ -67,22 +68,23 @@ key-mapping.preset = 'qwerty'
   enter = 'mode main'
   esc = 'mode main'
 
-# 'service' binding mode declaration.
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-  esc = ['reload-config', 'mode main']
-  r = ['flatten-workspace-tree', 'mode main'] # reset layout
-  #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-  f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-  backspace = ['close-all-windows-but-current', 'mode main']
-
-  alt-shift-h = ['join-with left', 'mode main']
-  alt-shift-j = ['join-with down', 'mode main']
-  alt-shift-k = ['join-with up', 'mode main']
-  alt-shift-l = ['join-with right', 'mode main']
+  # switch to stacked layout (only in tiling)
+  s = ['layout v_accordion', 'mode main']	
+  # switch to tiling layout (only in tiling)
+  t = ['layout h_tiles', 'mode main']
+  # toggle between floating and tiling layout
+  f = ['layout floating tiling', 'mode main']	
+  r = ['reload-config', 'mode main']
+  # back to main mode
+  esc = 'mode main'
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Terminal'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
@@ -94,7 +96,7 @@ if.app-id = 'notion.id'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-if.app-id = 'com.install4j.9806-1938-4586-6531.70'
+if.app-id = 'com.apple.mail'
 run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
@@ -102,9 +104,14 @@ if.app-id = 'org.whispersystems.signal-desktop'
 run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
-if.app-id = 'org.whispersystems.signal-desktop'
-run = 'move-node-to-workspace 5'
+if.app-id = 'com.install4j.9806-1938-4586-6531.70' # Burp
+run = 'move-node-to-workspace b'
 
 [[on-window-detected]]
-if.app-id = 'com.apple.Terminal'
-run = 'move-node-to-workspace 1'
+if.app-id = 'com.utmapp.UTM'
+run = 'move-node-to-workspace u'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = 'move-node-to-workspace v'
+
