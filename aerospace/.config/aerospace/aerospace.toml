@@ -33,7 +33,6 @@ key-mapping.preset = 'qwerty'
   alt-l = 'focus right --boundaries-action wrap-around-the-workspace'
   alt-tab = 'focus-back-and-forth'
 
-  # resize windows
   alt-shift-h = 'resize smart -50'
   alt-shift-l = 'resize smart +50'
   alt-shift-j = 'resize smart-opposite -50'
@@ -48,6 +47,9 @@ key-mapping.preset = 'qwerty'
   alt-u = 'workspace u'
   alt-c = 'workspace c'
   alt-v = 'workspace v'
+  alt-p = 'workspace p'
+  alt-f = 'workspace f'
+  alt-e = 'workspace e'
 
   alt-shift-1 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 1'
   alt-shift-2 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 2'
@@ -55,10 +57,15 @@ key-mapping.preset = 'qwerty'
   alt-shift-4 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 4'
   alt-shift-5 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 5'
   alt-shift-b = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window b'
+  alt-shift-u = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window b'
   alt-shift-v = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window v'
   alt-shift-c = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window c'
+  alt-shift-p = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window p'
+  alt-shift-f = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window f'
+  alt-shift-e = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window e'
 
   alt-semicolon = 'mode service'
+  alt-r = 'mode resize'
 
 [mode.resize.binding]
   h = 'resize width -50'
@@ -115,3 +122,19 @@ run = 'move-node-to-workspace u'
 if.app-id = 'com.microsoft.VSCode'
 run = 'move-node-to-workspace v'
 
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+run = ['layout floating', 'move-node-to-workspace p']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = ['layout floating', 'move-node-to-workspace f']
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Excel'
+run = ['move-node-to-workspace e']
+
+[[on-window-detected]]
+if.app-id = 'com.install4j.9806-1938-4586-6531.70' # Burp
+if.window-title-regex-substring = '.*Intruder attack of.*'
+run = ['layout floating', 'move-node-to-workspace b']  # The callback itself
