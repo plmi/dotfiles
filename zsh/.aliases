@@ -32,7 +32,7 @@ alias publicip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # media
 alias yt='mpv --volume=50 --ytdl-format="bestvideo[height<=?480]+bestaudio/best"'
-alias tb='mpv --volume=25 "http://listen.technobase.fm/listen.mp3.m3u"'
+alias tb='mpv --volume=25 "http://listen.technobase.fm/listen.mp3.m3u" > /dev/null &'
 alias lofi='mpv --volume=25 --no-video "https://www.youtube.com/watch?v=rUxyKA_-grg"'
 alias mp3dl="yt-dlp -f 'ba' -x --audio-format mp3 -o '%(id)s.%(ext)s'"
 
@@ -41,4 +41,6 @@ alias icat="kitty +kitten icat --align=left"
 
 # avoid linking against pyenv-provided Python file
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
-alias wget='command -v wget2 &> /dev/null && wget2 || wget'
+
+# Obsidian notes
+alias oo="cd /Users/michael/pentest && $EDITOR"
