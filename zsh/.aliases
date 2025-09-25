@@ -43,4 +43,4 @@ alias icat="kitty +kitten icat --align=left"
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 
 # Obsidian notes
-alias oo="cd /Users/michael/pentest && $EDITOR"
+alias oo="cd /Users/michael/pentest && $EDITOR ."
