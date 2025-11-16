@@ -1,1 +1,10 @@
-PROMPT="%B%F{fff}[%n%f%F{red}@%F{fff}%m]%f %~%b "
+# Different prompt colors per machine
+case $(uname -s) in
+    Linux)
+        PROMPT_COLOR='green'  # Green for any Linux
+        ;;
+    Darwin)
+        PROMPT_COLOR='red'    # Red for Mac
+        ;;
+esac
+PROMPT="%B%F{fff}[%n%f%F{${PROMPT_COLOR}}@%F{fff}%m]%f %~%b "
