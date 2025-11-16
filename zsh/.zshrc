@@ -28,7 +28,7 @@ source_when_exist "$HOME/dotfiles/zsh/.functions"
 source_when_exist "$HOME/dotfiles/zsh/.zsh-prompt"
 source_when_exist "$HOME/dotfiles/zsh/.pyenv"
 source_when_exist "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-if command -v brew >/dev/null 2>&1; then
+if ! hash brew >/dev/null; then
   source_when_exist "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 source_when_exist "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
