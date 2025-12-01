@@ -44,3 +44,6 @@ alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 
 # Obsidian notes
 alias oo="cd /Users/michael/pentest && $EDITOR ."
+
+# offsec
+alias fzf-wordlists='printf "%s%s" /usr/share/wordlists/ $(fd --follow --type file --type symlink -e txt --base-directory /usr/share/wordlists . | fzf)'
