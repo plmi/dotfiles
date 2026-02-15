@@ -137,3 +137,26 @@ function what() {
 #      sed -e "s#${prefix}/\{0,1\}##" -e 's#\.gpg##' -e 's#\\#\\\\#' | sort
 #  )
 #}
+
+# Load the current target into IP for each new shell.
+if [ -f "$HOME/.target" ]; then
+  IP="$(head -n1 "$HOME/.target" | tr -d '\r')"
+  if [ -n "$IP" ]; then
+    export IP
+  else
+    unset IP
+  fi
+fi
+
+# Wrapper keeps ~/.target and $IP in sync in the current shell.
+function target() {
+  if command target "$@"; then
+    local new_ip
+    new_ip="$(head -n1 "$HOME/.target" 2>/dev/null | tr -d '\r')"
+    if [ -n "$new_ip" ]; then
+      export IP="$new_ip"
+    else
+      unset IP
+    fi
+  fi
+}
