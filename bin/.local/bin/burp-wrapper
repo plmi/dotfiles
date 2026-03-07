@@ -23,6 +23,7 @@ else
 fi
 
 # Niri requires xwayland-run
+# https://github.com/niri-wm/niri/wiki/Xwayland#using-xwayland-run-to-run-xwayland
 if [[ -n "${NIRI_SOCKET:-}" ]]; then
   exec xwayland-run -- "$JAVA_BIN" -jar "$BURP_JAR_PATH" "$@"
 fi
