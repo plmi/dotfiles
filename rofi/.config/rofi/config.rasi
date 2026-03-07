@@ -2,8 +2,8 @@ configuration {
     modi:            "drun,run,window";
     show-icons:      true;
     icon-theme:      "Papirus";
-    font:            "Mono 14";
-    terminal:        "foot";
+    font:            "Mono 18";
+    terminal:        "alacritty";
     click-to-exit:   true;
     normalize-match: true;
 
