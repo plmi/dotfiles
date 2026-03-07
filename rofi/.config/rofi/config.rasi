@@ -48,6 +48,7 @@ prompt {
 }
 
 entry {
+    text-color:        @fg;
     placeholder:       "Search...";
     placeholder-color: @fg-dim;
 }
