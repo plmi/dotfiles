@@ -2,7 +2,7 @@
 # Based on Hyprland bindings
 
 set $mod Mod4
-set $term foot
+set $term alacritty
 set $menu rofi -show drun
 
 # Font for window titles and bar
@@ -31,7 +31,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
 
 # Lock screen
-bindsym $mod+l exec i3lock -c 1e1e2e
+bindsym $mod+Shift+l exec i3lock -c 1e1e2e
 
 # Screenshot (region → swappy)
 bindsym $mod+Shift+s exec maim -s | swappy -f -
@@ -54,7 +54,6 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
 
 bindsym $mod+Shift+Left  move left
 bindsym $mod+Shift+Down  move down
@@ -117,9 +116,8 @@ bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+space move scratchpad
 bindsym $mod+minus scratchpad show
 
-# Auto-launch scratchpad terminal (matches class set by --app-id equivalent)
-# foot sets WM_CLASS to the binary name; use -a to set app-id → class
-exec --no-startup-id $term -a scratchpad-term
+# Auto-launch scratchpad terminal
+exec --no-startup-id $term --class scratchpad-term
 
 for_window [class="scratchpad-term"] floating enable, resize set 70 ppt 70 ppt, move position center, move scratchpad
 
