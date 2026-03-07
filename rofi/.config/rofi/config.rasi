@@ -2,7 +2,7 @@ configuration {
     modi:            "drun,run,window";
     show-icons:      true;
     icon-theme:      "Papirus";
-    font:            "Mono 12";
+    font:            "Mono 14";
     terminal:        "foot";
     click-to-exit:   true;
     normalize-match: true;
@@ -69,9 +69,9 @@ element-icon {
     size: 1.2em;
 }
 
-element.normal.normal    { background-color: transparent; }
-element.normal.urgent    { background-color: @urgent;     text-color: @bg; }
-element.alternate.normal { background-color: transparent; }
-element.alternate.urgent { background-color: @urgent;     text-color: @bg; }
-element.selected.normal  { background-color: @accent;     text-color: @bg; }
-element.selected.urgent  { background-color: @urgent;     text-color: @bg; }
+element.normal.normal    { background-color: transparent; text-color: @fg;  }
+element.normal.urgent    { background-color: @urgent;     text-color: @bg;  }
+element.alternate.normal { background-color: transparent; text-color: @fg;  }
+element.alternate.urgent { background-color: @urgent;     text-color: @bg;  }
+element.selected.normal  { background-color: @accent;     text-color: @bg;  }
+element.selected.urgent  { background-color: @urgent;     text-color: @bg;  }
