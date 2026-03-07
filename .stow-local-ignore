@@ -1,4 +1,5 @@
 /setup/
 /zsh/.functions
 /zsh/.aliases
-/alacritty/.*\.bak
+.*\.bak
+.*\.old
