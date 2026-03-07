@@ -2,7 +2,8 @@ if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec startx
 fi
 
-path+=('/home/michael/.local/bin')
+path+=("${HOME}/.local/bin")
+path+=("${HOME}/.antigravity/antigravity/bin")
 
 # Created by `pipx` on 2024-11-13 22:39:21
 if [[ "$OSTYPE" == "darwin"* ]]; then
