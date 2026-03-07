@@ -12,6 +12,12 @@ font pango:monospace 10
 exec --no-startup-id nm-applet
 exec --no-startup-id /usr/bin/lxqt-policykit-agent
 exec --no-startup-id dunst
+# prltoolsd tries to start them at boot,
+# but at that point there's no DISPLAY environment variable set
+# then it dies immediately.
+exec --no-startup-id /usr/bin/prlcp
+exec --no-startup-id /usr/bin/prlcc
+exec --no-startup-id /usr/bin/prldnd
 
 # ── Basics ─────────────────────────────────────────────────────────────────────
 
