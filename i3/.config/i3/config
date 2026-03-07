@@ -1,0 +1,188 @@
+# i3 config
+# Based on Hyprland bindings
+
+set $mod Mod4
+set $term foot
+set $menu rofi -show drun
+
+# Font for window titles and bar
+font pango:monospace 10
+
+# Autostart
+exec --no-startup-id nm-applet
+exec --no-startup-id /usr/bin/lxqt-policykit-agent
+exec --no-startup-id dunst
+
+# ── Basics ─────────────────────────────────────────────────────────────────────
+
+# Terminal
+bindsym $mod+Return exec $term
+
+# Launcher
+bindsym $mod+d exec $menu
+bindsym $mod+p exec $menu
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Reload / restart / exit
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
+
+# Lock screen
+bindsym $mod+l exec i3lock -c 1e1e2e
+
+# Screenshot (region → swappy)
+bindsym $mod+Shift+s exec maim -s | swappy -f -
+
+# ── Focus (vim keys) ───────────────────────────────────────────────────────────
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Arrow key alternatives
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# ── Move windows ──────────────────────────────────────────────────────────────
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# ── Layout ────────────────────────────────────────────────────────────────────
+
+bindsym $mod+v split toggle
+bindsym $mod+f fullscreen toggle
+
+# Toggle floating
+bindsym $mod+Shift+v floating toggle
+
+# Focus tiling / floating
+bindsym $mod+space focus mode_toggle
+
+# Layouts
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# ── Workspaces ────────────────────────────────────────────────────────────────
+
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+
+# Previous workspace
+bindsym $mod+Tab workspace back_and_forth
+
+# ── Scratchpad ────────────────────────────────────────────────────────────────
+
+bindsym $mod+Shift+space move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Auto-launch scratchpad terminal (matches class set by --app-id equivalent)
+# foot sets WM_CLASS to the binary name; use -a to set app-id → class
+exec --no-startup-id $term -a scratchpad-term
+
+for_window [class="scratchpad-term"] floating enable, resize set 70 ppt 70 ppt, move position center, move scratchpad
+
+# ── Resize mode ───────────────────────────────────────────────────────────────
+
+mode "resize" {
+    bindsym h resize shrink width  10 px or 10 ppt
+    bindsym j resize grow   height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow   width  10 px or 10 ppt
+
+    bindsym Left  resize shrink width  10 px or 10 ppt
+    bindsym Down  resize grow   height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow   width  10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# ── Mouse ─────────────────────────────────────────────────────────────────────
+
+floating_modifier $mod
+tiling_drag modifier titlebar
+
+# ── Appearance ────────────────────────────────────────────────────────────────
+
+gaps inner 4
+gaps outer 8
+default_border pixel 2
+
+# Catppuccin Mocha colours
+# class                 border  bg      text    indicator child_border
+client.focused          #89b4fa #1e1e2e #cdd6f4 #89b4fa   #89b4fa
+client.focused_inactive #313244 #1e1e2e #6c7086 #313244   #313244
+client.unfocused        #313244 #1e1e2e #6c7086 #313244   #313244
+client.urgent           #f38ba8 #1e1e2e #f38ba8 #f38ba8   #f38ba8
+
+# ── Window rules ──────────────────────────────────────────────────────────────
+
+for_window [class="mpv"] floating enable
+
+assign [class="Brave-browser|brave-browser"] $ws2
+assign [class="firefox|Firefox"] $ws2
+assign [class="obsidian|Obsidian"] $ws4
+assign [class="burp-StartBurp|burpsuite|BurpSuite"] $ws3
+
+# ── Bar ───────────────────────────────────────────────────────────────────────
+
+bar {
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    position top
+    font pango:monospace 10
+    colors {
+        background #1e1e2e
+        statusline #cdd6f4
+        separator  #6c7086
+        focused_workspace  #89b4fa #89b4fa #1e1e2e
+        active_workspace   #313244 #313244 #cdd6f4
+        inactive_workspace #1e1e2e #1e1e2e #6c7086
+        urgent_workspace   #f38ba8 #f38ba8 #1e1e2e
+    }
+}
