@@ -7,9 +7,9 @@ configuration {
     click-to-exit:   true;
     normalize-match: true;
 
-    /* vim-style navigation */
-    kb-row-up:   "Up,Control+k";
-    kb-row-down: "Down,Control+j";
+    /* vim-style navigation (Up/Down are already defaults) */
+    kb-row-up:   "Control+k";
+    kb-row-down: "Control+j";
 }
 
 /* Catppuccin Mocha */
