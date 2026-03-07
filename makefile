@@ -13,16 +13,16 @@ BASE_PACKAGES := \
 	bin git nvim tmux vim yazi zathura zsh
 
 MEDIA_PACKAGES := \
-	mpd ncmpcpp sxiv
+	mpd ncmpcpp sxiv wallpapers
 
 # Profiles
 PACKAGES_fedora-hyprland := \
 	$(BASE_PACKAGES) $(MEDIA_PACKAGES) \
-	hypr waybar wofi swaync foot swappy wallpapers autostart
+	hypr waybar wofi swaync foot swappy autostart
 
 PACKAGES_kali-i3 := \
 	$(BASE_PACKAGES) \
-	i3 rofi foot dunst x11
+	i3 rofi alacritty dunst x11
 
 PACKAGES_macos-aerospace := \
 	$(BASE_PACKAGES) \
