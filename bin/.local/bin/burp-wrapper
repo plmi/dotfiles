@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Usage: burp-wrapper /home/user/tools/burp.jar
+
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 DEFAULT_JAR="/opt/burpsuite_community.jar"
