@@ -1,0 +1,87 @@
+colourful: true
+
+# Palette tuned toward macOS Terminal's default look.
+# Note: Terminal.app may remap RGB to its internal palette, so rendered colors can differ. :contentReference[oaicite:2]{index=2}
+palette:
+  black:   "#1d1f21"
+  red:     "#C65339"   # measured rendered ANSI 1 in default Terminal :contentReference[oaicite:3]{index=3}
+  green:   "#00c200"
+  yellow:  "#c7c400"
+  blue:    "#0225c7"
+  magenta: "#c930c7"
+  cyan:    "#00c5c7"
+  white:   "#c7c7c7"
+
+  bright_black:   "#686868"
+  bright_red:     "#ff6e67"
+  bright_green:   "#5ffa68"
+  bright_yellow:  "#fffc67"
+  bright_blue:    "#da97ff"   # measured rendered ANSI 12 (“Bright blue”) :contentReference[oaicite:4]{index=4}
+  bright_magenta: "#ff77ff"
+  bright_cyan:    "#60fdff"
+  bright_white:   "#ffffff"
+
+filekinds:
+  normal:        { foreground: white }
+  directory:     { foreground: white }
+  symlink:       { foreground: magenta }
+  executable:    { foreground: bright_green }
+  pipe:          { foreground: yellow }
+  socket:        { foreground: bright_red }
+  special:       { foreground: yellow }
+
+# Requested: permissions white
+perms:
+  user_read:           { foreground: white }
+  user_write:          { foreground: white }
+  user_execute_file:   { foreground: white }
+  user_execute_other:  { foreground: white }
+  group_read:          { foreground: white }
+  group_write:         { foreground: white }
+  group_execute:       { foreground: white }
+  other_read:          { foreground: white }
+  other_write:         { foreground: white }
+  other_execute:       { foreground: white }
+  special_user_file:   { foreground: white }
+  special_other:       { foreground: white }
+  attribute:           { foreground: white }
+
+# Requested: size white
+size:
+  major:        { foreground: white }
+  minor:        { foreground: white }
+  number_byte:  { foreground: white }
+  number_kilo:  { foreground: white }
+  number_mega:  { foreground: white }
+  number_giga:  { foreground: white }
+  number_huge:  { foreground: white }
+  unit_byte:    { foreground: white }
+  unit_kilo:    { foreground: white }
+  unit_mega:    { foreground: white }
+  unit_giga:    { foreground: white }
+  unit_huge:    { foreground: white }
+
+users:
+  user_you:    { foreground: white }
+  user_root:   { foreground: white }
+  user_other:  { foreground: white }
+  group_yours: { foreground: white }
+  group_other: { foreground: white }
+  group_root:  { foreground: white }
+
+git:
+  new:        { foreground: bright_green }
+  modified:   { foreground: bright_blue }
+  deleted:    { foreground: bright_red }
+  renamed:    { foreground: bright_yellow }
+  conflicted: { foreground: bright_red }
+  ignored:    { foreground: bright_black, is_dimmed: true }
+
+# Requested: date white
+date: { foreground: white }
+
+punctuation: { foreground: bright_black }
+header:      { foreground: white, is_underline: true }
+inode:       { foreground: bright_black }
+blocks:      { foreground: bright_black }
+
