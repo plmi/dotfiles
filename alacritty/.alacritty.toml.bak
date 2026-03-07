@@ -1,0 +1,104 @@
+[[keyboard.bindings]]
+chars = "\u0006v"
+key = "D"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0006s"
+key = "D"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0006x"
+key = "W"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0006h"
+key = "H"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0006j"
+key = "J"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0006k"
+key = "K"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0006l"
+key = "L"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0006c"
+key = "T"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00061"
+key = "Key1"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00062"
+key = "Key2"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00063"
+key = "Key3"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00064"
+key = "Key4"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00065"
+key = "Key5"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00066"
+key = "Key6"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00067"
+key = "Key7"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00068"
+key = "Key8"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00069"
+key = "Key9"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0006H"
+key = "Left"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0006J"
+key = "Down"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0006K"
+key = "Up"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0006L"
+key = "Right"
+mods = "Command"
