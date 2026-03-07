@@ -20,6 +20,10 @@ PACKAGES_fedora-hyprland := \
 	$(BASE_PACKAGES) $(MEDIA_PACKAGES) \
 	hypr waybar wofi swaync foot swappy wallpapers autostart
 
+PACKAGES_kali-i3 := \
+	$(BASE_PACKAGES) \
+	i3 rofi foot dunst
+
 PACKAGES_macos-aerospace := \
 	$(BASE_PACKAGES) \
 	aerospace karabiner
@@ -28,12 +32,14 @@ PACKAGES_macos-aerospace := \
 # These are stowed to SYSTEM_TARGET with sudo in the same make command.
 SYSTEM_PACKAGES_fedora-hyprland := etc
 SYSTEM_PACKAGES_macos-aerospace :=
+SYSTEM_PACKAGES_kali-i3 :=
 
-PROFILES := fedora-hyprland macos-aerospace
+PROFILES := fedora-hyprland macos-aerospace kali-i3
 
 .PHONY: help list-profiles list-packages \
 	fedora-hyprland unfedora-hyprland \
 	macos-aerospace unmacos-aerospace \
+	kali-i3 unkali-i3 \
 	_apply-profile _unapply-profile \
 	everything uneverything all delete
 
@@ -97,6 +103,12 @@ macos-aerospace: _apply-profile
 
 unmacos-aerospace: PROFILE=macos-aerospace
 unmacos-aerospace: _unapply-profile
+
+kali-i3: PROFILE=kali-i3
+kali-i3: _apply-profile
+
+unkali-i3: PROFILE=kali-i3
+unkali-i3: _unapply-profile
 
 # Convenience target: install or remove every package folder.
 everything:
