@@ -22,7 +22,7 @@ PACKAGES_fedora-hyprland := \
 
 PACKAGES_kali-i3 := \
 	$(BASE_PACKAGES) \
-	i3 rofi foot dunst
+	i3 rofi foot dunst x11
 
 PACKAGES_macos-aerospace := \
 	$(BASE_PACKAGES) \
