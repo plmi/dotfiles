@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+DEFAULT_JAR="/opt/burpsuite_community.jar"
+
+# If first argument looks like a jar path, use it
+if [[ "${1:-}" == *.jar ]]; then
+  BURP_JAR_PATH="$1"
+  shift
+else
+  BURP_JAR_PATH="$DEFAULT_JAR"
+fi
+
+# Detect Java binary
+if [[ -x /usr/lib/jvm/java-21-openjdk/bin/java ]]; then
+  JAVA_BIN="/usr/lib/jvm/java-21-openjdk/bin/java"
+else
+  JAVA_BIN="/usr/bin/java"
+fi
+
+# Niri requires xwayland-run
+if [[ -n "${NIRI_SOCKET:-}" ]]; then
+  exec xwayland-run -- "$JAVA_BIN" -jar "$BURP_JAR_PATH" "$@"
+fi
+
+# Hyprland or anything else
+exec "$JAVA_BIN" -jar "$BURP_JAR_PATH" "$@"
