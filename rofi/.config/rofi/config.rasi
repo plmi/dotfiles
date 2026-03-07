@@ -8,8 +8,8 @@ configuration {
     normalize-match: true;
 
     /* vim-style navigation (Up/Down are already defaults) */
-    kb-row-up:   "Control+k";
-    kb-row-down: "Control+j";
+    /*kb-row-up:   "Control+k";
+    kb-row-down: "Control+j";*/
 }
 
 /* Catppuccin Mocha */
