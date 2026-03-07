@@ -13,4 +13,4 @@ fi
 export PATH
 export XDG_CONFIG_HOME="$HOME/.config"
 # Scale Burp on i3
-export _JAVA_OPTIONS="-Dsun.java2d.uiScale=2.0
+export _JAVA_OPTIONS="-Dsun.java2d.uiScale=2.0"
