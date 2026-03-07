@@ -30,7 +30,7 @@ window {
     border:           2px solid;
     border-color:     @accent;
     border-radius:    6px;
-    width:            480px;
+    width:            640px;
     padding:          8px;
 }
 
@@ -71,5 +71,7 @@ element-icon {
 
 element.normal.normal    { background-color: transparent; }
 element.normal.urgent    { background-color: @urgent;     text-color: @bg; }
+element.alternate.normal { background-color: transparent; }
+element.alternate.urgent { background-color: @urgent;     text-color: @bg; }
 element.selected.normal  { background-color: @accent;     text-color: @bg; }
 element.selected.urgent  { background-color: @urgent;     text-color: @bg; }
