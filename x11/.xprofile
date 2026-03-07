@@ -1,0 +1,3 @@
+# For Kali on Retina Display
+xrdb -merge ~/.Xresources
+xrandr --output Virtual-1 --mode 5120x2754

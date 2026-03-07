@@ -1,3 +1,6 @@
 ! THEME
 #include "/home/michael/dotfiles/x11/catppuccin-mocha.xresources"
 #include "/home/michael/dotfiles/x11/dmenu.xresources"
+
+# Scale Kali on Parallels Desktop with Retina mode
+Xft.dpi: 192
