@@ -18,7 +18,7 @@ alias functions="$EDITOR $DOTFILES/zsh/.functions"
 
 # directories
 alias ..='cd ..'
-alias ll='command -v eza &> /dev/null && eza --long --header --binary --modified --time-style=long-iso --all --sort=.name --group-directories-first || ls -lha --color'
+alias ll='command -v eza &> /dev/null && eza --long --binary --modified --time-style=iso --all --sort=name --group-directories-first || ls -lha --color'
 alias dirsize="du -csh * | sort -n"
 
 # search
