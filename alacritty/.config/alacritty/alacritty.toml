@@ -34,7 +34,7 @@ style = "Bold Italic"
 family = "Fira Code"
 style = "Italic"
 
-[shell]
+[terminal.shell]
 program = "/bin/zsh"
 args = ["--login"]
 
