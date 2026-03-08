@@ -126,7 +126,7 @@ bindsym $mod+minus scratchpad show
 # Auto-launch scratchpad terminal
 exec --no-startup-id $term --class scratchpad-term
 
-for_window [class="scratchpad-term"] floating enable, resize set 70 ppt 70 ppt, move position center, move scratchpad
+for_window [class="scratchpad-term"] floating enable, resize set 60 ppt 80 ppt, move position center, move scratchpad
 
 # ── Resize mode ───────────────────────────────────────────────────────────────
 
