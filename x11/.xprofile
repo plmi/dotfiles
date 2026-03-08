@@ -1,3 +1,17 @@
-# For Kali on Retina Display
+# Sourced by SDDM before the session starts.
+# GUI apps launched from i3/rofi inherit this environment.
 xrdb -merge ~/.Xresources
 xrandr --output Virtual-1 --mode 5120x2754
+
+# anki
+export ANKI_NOHIGHDPI=1
+export DISABLE_QT5_COMPAT=1
+
+# Java (needed for Anki, Burp)
+export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_OPTIONS="-Dsun.java2d.uiScale=2.0"
+
+# GUI scaling (Burp, sqlitebrowser)
+export GDK_SCALE=2
+export QT_SCALE_FACTOR=2
+export QT_AUTO_SCREEN_SCALE_FACTOR=1

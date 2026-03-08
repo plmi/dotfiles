@@ -1,3 +1,5 @@
+# TTY fallback: auto-start X on virtual console 1 if no display manager is running.
+# Dead code when using SDDM — $DISPLAY is already set so this block never executes.
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec startx
 fi
@@ -12,18 +14,5 @@ fi
 
 export PATH
 
-# anki
-export _JAVA_AWT_WM_NONREPARENTING=1
-export ANKI_NOHIGHDPI=1
-export DISABLE_QT5_COMPAT=1
-
 # brew
 export HOMEBREW_NO_ANALYTICS=1
-
-# GUI scaling (burp, sqlitebrowser)
-export GDK_SCALE=2
-export QT_SCALE_FACTOR=2
-export QT_AUTO_SCREEN_SCALE_FACTOR=1
-
-# Scale Burp on i3
-export _JAVA_OPTIONS="-Dsun.java2d.uiScale=2.0"
