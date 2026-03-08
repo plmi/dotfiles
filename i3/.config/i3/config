@@ -36,7 +36,7 @@ bindsym $mod+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
-bindsym ctrl+shift+q exec "i3-nagbar -t warning -m 'Shut down the computer now?' -B 'Shut down' 'systemctl poweroff' -B 'Restart' 'systemctl reboot'"
+bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Shut down the computer now?' -B 'Shut down' 'systemctl poweroff' -B 'Restart' 'systemctl reboot'"
 
 # Wallpaper
 bindsym $mod+Shift+w exec ~/.local/bin/set_wallpaper
