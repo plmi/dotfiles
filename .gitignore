@@ -2,3 +2,5 @@ tmux/.config/tmux/plugins
 rclone
 vim/.vim/.netrwhist
 vim/.vim/undodir/
+# backup config of i3
+config.save
