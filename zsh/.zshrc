@@ -26,7 +26,7 @@ function source_when_exist() {
 source_when_exist "$HOME/dotfiles/zsh/.aliases"
 source_when_exist "$HOME/dotfiles/zsh/.functions"
 source_when_exist "$HOME/dotfiles/zsh/.zsh-prompt"
-source_when_exist "$HOME/dotfiles/zsh/.pyenv"
+source_when_exist "$HOME/dotfiles/zsh/.pyenv.init"
 source_when_exist "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source_when_exist "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 if hash brew >/dev/null 2>&1; then
@@ -37,7 +37,7 @@ source_when_exist "/usr/share/fzf/key-bindings.zsh"
 source_when_exist "/usr/share/fzf/completion.zsh"
 # shellcheck disable=SC1090
 source <(fzf --zsh)
-source_when_exist "$HOME/dotfiles/zsh/init-nvm.sh"
+source_when_exist "$HOME/dotfiles/zsh/.nvm.init"
 
 # https://stackoverflow.com/a/43087047
 bindkey -e
