@@ -1,5 +1,12 @@
 /setup/
 /zsh/.functions
 /zsh/.aliases
+/zsh/init-nvm.sh
+/zsh/\.zsh-prompt
+/x11/\.catppuccin-mocha.xresources
+/x11/\.dmenu.xresources
+/x11/bin/
+/x11/\.xsession
+/x11/\.xinitrc
 .*\.bak
 .*\.old
