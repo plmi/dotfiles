@@ -10,7 +10,7 @@ SUDO ?= sudo
 
 # Shared package groups
 BASE_PACKAGES := \
-	bin git nvim tmux vim yazi zathura zsh eza sxiv
+	bin git nvim stow tmux vim yazi zathura zsh eza sxiv
 
 MEDIA_PACKAGES := \
 	mpd ncmpcpp

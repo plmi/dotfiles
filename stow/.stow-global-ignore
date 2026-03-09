@@ -1,0 +1,21 @@
+# Global stow ignore list.
+# Applies to all packages that don't have their own .stow-local-ignore.
+# Uses Perl regular expressions.
+
+# Backup / old files
+.*\.bak
+.*\.old
+
+# Version control
+RCS
+\.git
+\.gitignore
+\.gitmodules
+CVS
+\.svn
+_darcs
+\.hg
+
+# Editor cruft
+.+~
+\#.*\#

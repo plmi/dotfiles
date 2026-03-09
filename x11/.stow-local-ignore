@@ -1,0 +1,7 @@
+\.xsession
+\.xinitrc
+catppuccin-mocha\.xresources
+dmenu\.xresources
+.*\.bak
+.*\.old
+/bin

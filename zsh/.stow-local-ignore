@@ -1,4 +1,6 @@
-\.aliases
+init-nvm.sh
 \.functions
-\.zshrc.old
-\.pyenv
+\.aliases
+\.zsh-prompt
+.*\.bak
+.*\.old
