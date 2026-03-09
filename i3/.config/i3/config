@@ -27,7 +27,7 @@ bindsym $mod+Return exec $term
 
 # Launcher
 bindsym $mod+p exec $menu
-bindsym $mod+v exec ~/.local/bin/rofi-nmcli-vpn.sh
+bindsym $mod+n exec ~/.local/bin/rofi-nmcli-vpn.sh
 
 # Kill focused window
 bindsym $mod+q kill
