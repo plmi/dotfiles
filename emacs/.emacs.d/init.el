@@ -1,49 +1,93 @@
-; disable splash screen
+;; ---------------------------------------------------------------------------
+;; Package Manager
+;; ---------------------------------------------------------------------------
+
+(require 'package)
+
+;; Add GNU ELPA and MELPA as package sources
+(setq package-archives
+      '(("gnu"   . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")))
+
+;; Initialize the package system
+(package-initialize)
+
+;; Refresh package list on first run (when cache is empty)
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; ---------------------------------------------------------------------------
+;; Package Installation
+;; ---------------------------------------------------------------------------
+
+;; Install missing packages from this list automatically
+;; vterm  - terminal emulator inside Emacs
+;; smex   - M-x with frecency sorting (ido-style)
+;; xclip  - sync kill-ring with system clipboard via xclip
+(dolist (pkg '(vterm smex xclip))
+  (unless (package-installed-p pkg)
+    (package-install pkg)))
+
+;; ---------------------------------------------------------------------------
+;; UI / Appearance
+;; ---------------------------------------------------------------------------
+
+;; Hide the icon toolbar
+(tool-bar-mode   -1)
+;; Hide the menu bar
+(menu-bar-mode   -1)
+;; Hide scroll bars
+(scroll-bar-mode -1)
+
+;; Skip the default splash/welcome screen on startup
 (setq inhibit-startup-screen t)
-; disable menu bar
-(menu-bar-mode 0)
-; disable toolbar
-(tool-bar-mode 0)
-; disable scrollbar
-(scroll-bar-mode 0)
-; set auto-saving directory
+
+;; Show line numbers in every buffer
+(global-display-line-numbers-mode 1)
+
+;; ---------------------------------------------------------------------------
+;; File Management
+;; ---------------------------------------------------------------------------
+
+;; Write backups and auto-saves to /tmp instead of cluttering source dirs
 (setq backup-directory-alist '(("/tmp/.emacs_saves")))
-; configure interactive DO things
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
-; set font
-(set-frame-font "JetbrainsMono Nerd Font 11" nil t)
-; use system clipboard
-(xclip-mode 1)
-; move custom data out of init.el
+
+;; Keep Customize-generated code out of init.el by redirecting it to its own file
 (setq custom-file (concat user-emacs-directory "custom.el"))
+;; Only load it if it actually exists yet
 (when (file-exists-p custom-file)
   (load custom-file))
-; add MELPA repository
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-; nyan-mode
-(require 'nyan-mode)
-(nyan-mode)
-; smex
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-; evil-mode + evil-collection
-(setq evil-want-integration t)
-(setq evil-want-keybinding nil)
-(require 'evil)
-(when (require 'evil-collection nil t)
-  (evil-collection-init))
-(evil-mode 1)
-(define-key evil-insert-state-map "jk" 'evil-normal-state)
-; enable theme
-(load-theme 'catppuccin :no-confirm)
-; enable doom-modeline
-(require 'doom-modeline)
-(doom-modeline-mode 1)
-(setq inhibit-compacting-font-caches t)
-; enable interaction-log
-(require 'interaction-log)
-(interaction-log-mode 1)
+
+;; ---------------------------------------------------------------------------
+;; Search
+;; ---------------------------------------------------------------------------
+
+;; After isearch ends, leave point at the beginning of the match
+;; (default Emacs behaviour leaves it at the end, which can be surprising)
+(add-hook 'isearch-mode-end-hook
+          (lambda ()
+            (when (and isearch-forward
+                       (number-or-marker-p isearch-other-end))
+              (goto-char isearch-other-end))))
+
+;; ---------------------------------------------------------------------------
+;; Package Setup
+;; ---------------------------------------------------------------------------
+
+;; Load vterm explicitly so its functions are available
+(require 'vterm)
+;; Enable clipboard sync with the X11 / Wayland clipboard
+(xclip-mode 1)
+
+;; ---------------------------------------------------------------------------
+;; Keybindings
+;; ---------------------------------------------------------------------------
+
+;; smex replaces the default M-x with frecency-sorted completion
+(global-set-key (kbd "M-x") #'smex)
+;; M-X limits smex to commands relevant to the current major mode
+(global-set-key (kbd "M-X") #'smex-major-mode-commands)
+;; Open a terminal in the current window
+(global-set-key (kbd "C-c t") #'vterm)
+;; Explicit mark binding — ensures it works correctly in terminal frames
+(global-set-key (kbd "C-@") #'set-mark-command)
