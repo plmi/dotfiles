@@ -88,11 +88,16 @@
 
 ;; smex replaces the default M-x with frecency-sorted completion
 (global-set-key (kbd "M-x") #'smex)
+
 ;; M-X limits smex to commands relevant to the current major mode
 (global-set-key (kbd "M-X") #'smex-major-mode-commands)
-;; multi-vterm: open/cycle terminal instances
-(global-set-key (kbd "C-c t") #'multi-vterm)
-(global-set-key (kbd "C-c C-t n") #'multi-vterm-next)
-(global-set-key (kbd "C-c C-t p") #'multi-vterm-prev)
+
+;; multi-vterm: open/cycle/rename terminal instances
+(global-set-key (kbd "C-c t v") #'multi-vterm)
+(global-set-key (kbd "C-c t n") #'multi-vterm-next)
+(global-set-key (kbd "C-c t p") #'multi-vterm-prev)
+(global-set-key (kbd "C-c t r") #'multi-vterm-rename-buffer)
+
 ;; Explicit mark binding — ensures it works correctly in terminal frames
 (global-set-key (kbd "C-@") #'set-mark-command)
+
