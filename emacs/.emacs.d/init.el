@@ -21,10 +21,11 @@
 ;; ---------------------------------------------------------------------------
 
 ;; Install missing packages from this list automatically
-;; vterm  - terminal emulator inside Emacs
-;; smex   - M-x with frecency sorting (ido-style)
-;; xclip  - sync kill-ring with system clipboard via xclip
-(dolist (pkg '(vterm smex xclip))
+;; vterm        - terminal emulator inside Emacs
+;; multi-vterm  - manage multiple vterm instances
+;; smex         - M-x with frecency sorting (ido-style)
+;; xclip        - sync kill-ring with system clipboard via xclip
+(dolist (pkg '(vterm multi-vterm smex xclip))
   (unless (package-installed-p pkg)
     (package-install pkg)))
 
@@ -76,6 +77,8 @@
 
 ;; Load vterm explicitly so its functions are available
 (require 'vterm)
+;; Load multi-vterm for managing multiple terminal instances
+(require 'multi-vterm)
 ;; Enable clipboard sync with the X11 / Wayland clipboard
 (xclip-mode 1)
 
@@ -87,7 +90,9 @@
 (global-set-key (kbd "M-x") #'smex)
 ;; M-X limits smex to commands relevant to the current major mode
 (global-set-key (kbd "M-X") #'smex-major-mode-commands)
-;; Open a terminal in the current window
-(global-set-key (kbd "C-c t") #'vterm)
+;; multi-vterm: open/cycle terminal instances
+(global-set-key (kbd "C-c t") #'multi-vterm)
+(global-set-key (kbd "C-c C-t n") #'multi-vterm-next)
+(global-set-key (kbd "C-c C-t p") #'multi-vterm-prev)
 ;; Explicit mark binding — ensures it works correctly in terminal frames
 (global-set-key (kbd "C-@") #'set-mark-command)
