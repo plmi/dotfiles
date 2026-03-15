@@ -2,6 +2,7 @@
 
 # system
 alias v="${EDITOR}"
+alias emacs="emacs -nw"
 alias bathelp='bat --plain --language=help'
 alias clipboard='xclip -sel clipboard'
 alias bb='sudo shutdown -h now'
@@ -18,7 +19,34 @@ alias functions="$EDITOR $DOTFILES/zsh/.functions"
 
 # directories
 alias ..='cd ..'
-alias ll='command -v eza &> /dev/null && eza --long --binary --modified --time-style=iso --all --sort=name --group-directories-first || ls -lha --color'
+
+# Prefer eza if available, fall back to gls (Emacs) or ls (terminal)
+# gls required in Emacs shell buffers for directory colors on macOS
+
+_eza_flags=(
+  --long
+  --binary
+  --modified
+  --time-style=iso
+  --all
+  --sort=name
+  --group-directories-first
+)
+
+if [[ -n "$INSIDE_EMACS" ]]; then
+  if command -v eza &>/dev/null; then
+    alias ll="eza ${_eza_flags[*]}"
+  else
+    alias ll='gls -lha --color=auto'
+  fi
+else
+  if command -v eza &>/dev/null; then
+    alias ll="eza ${_eza_flags[*]} --icons"
+  else
+    alias ll='ls -lha --color'
+  fi
+fi
+
 alias dirsize="du -csh * | sort -n"
 
 # search
