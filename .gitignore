@@ -4,3 +4,6 @@ vim/.vim/.netrwhist
 vim/.vim/undodir/
 # backup config of i3
 config.save
+# Emacs generated/runtime files
+emacs/.emacs.d/*
+!emacs/.emacs.d/init.el
