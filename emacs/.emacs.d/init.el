@@ -30,10 +30,6 @@
     (package-install 'multi-vterm))
   (require 'multi-vterm))
 
-;; smex - M-x with frecency sorting (ido-style)
-(unless (package-installed-p 'smex)
-  (package-install 'smex))
-
 ;; xclip - sync kill-ring with system clipboard via xclip
 (unless (package-installed-p 'xclip)
   (package-install 'xclip))
@@ -112,20 +108,13 @@
 ;; Keybindings
 ;; ---------------------------------------------------------------------------
 
-;; smex replaces the default M-x with frecency-sorted completion
-;(global-set-key (kbd "M-x") #'smex)
-
-;; M-X limits smex to commands relevant to the current major mode
-;(global-set-key (kbd "M-X") #'smex-major-mode-commands)
-
 ;; multi-vterm: open/cycle/rename terminal instances
 (global-set-key (kbd "C-c t v") #'multi-vterm)
 (global-set-key (kbd "C-c t n") #'multi-vterm-next)
 (global-set-key (kbd "C-c t p") #'multi-vterm-prev)
-;;(global-set-key (kbd "C-c t r") #'multi-vterm-rename-buffer)
 
 ;; Explicit mark binding — ensures it works correctly in terminal frames
 (global-set-key (kbd "C-@") #'set-mark-command)
 
-;; rename buffer
+;; Rename buffer
 (global-set-key (kbd "C-c r") #'rename-buffer)
