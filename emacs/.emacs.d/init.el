@@ -91,15 +91,8 @@
 ;; Load vterm explicitly so its functions are available
 (require 'vterm)
 
-;; Load multi-vterm only if vterm loaded cleanly
-;;(when (featurep 'vterm)
-  ;;(require 'multi-vterm))
-
 ;; Enable ivy completion framework globally
 (ivy-mode 1)
-
-;; Enable clipboard sync with the X11 / Wayland clipboard
-(xclip-mode 1)
 
 ;; Enable clipboard sync with the X11 / Wayland clipboard
 (xclip-mode 1)
