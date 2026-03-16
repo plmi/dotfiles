@@ -42,6 +42,14 @@
 (unless (package-installed-p 'counsel)
   (package-install 'counsel))
 
+;; Download Evil
+(unless (package-installed-p 'evil)
+  (package-install 'evil))
+
+;; Download Evil collection
+(unless (package-installed-p 'evil-collection)
+  (package-install 'evil-collection))
+
 ;; ---------------------------------------------------------------------------
 ;; UI / Appearance
 ;; ---------------------------------------------------------------------------
@@ -96,6 +104,24 @@
 
 ;; Enable clipboard sync with the X11 / Wayland clipboard
 (xclip-mode 1)
+
+;; Enable Evil
+(use-package evil
+  :init
+  ;; enable scroll up with Ctrl+u
+  (setq evil-want-C-u-scroll t)
+  :config
+  (evil-mode 1)
+  ;; use visual line motions even outside of visual-line-mode
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line))
+
+;; Enable evil-mode in magit, dired, help etc.
+(evil-collection-init)
+
+;; Enable snippet system build into org mode
+(with-eval-after-load 'org
+  (require 'org-tempo))
 
 ;; ---------------------------------------------------------------------------
 ;; Keybindings
