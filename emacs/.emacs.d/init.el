@@ -42,22 +42,23 @@
 (unless (package-installed-p 'counsel)
   (package-install 'counsel))
 
+
 ;; Download Evil
-(unless (package-installed-p 'evil)
-  (package-install 'evil))
+;;(unless (package-installed-p 'evil)
+;;  (package-install 'evil))
 
 ;; Download Evil collection
-(unless (package-installed-p 'evil-collection)
-  (package-install 'evil-collection))
+;;(unless (package-installed-p 'evil-collection)
+;;  (package-install 'evil-collection))
 
 ;; ---------------------------------------------------------------------------
 ;; UI / Appearance
 ;; ---------------------------------------------------------------------------
 
 ;; Hide the icon toolbar
-(tool-bar-mode   -1)
+(tool-bar-mode -1)
 ;; Hide the menu bar
-(menu-bar-mode   -1)
+(menu-bar-mode -1)
 ;; Hide scroll bars
 (scroll-bar-mode -1)
 
@@ -72,7 +73,7 @@
 ;; ---------------------------------------------------------------------------
 
 ;; Write backups and auto-saves to /tmp instead of cluttering source dirs
-(setq backup-directory-alist '(("/tmp/.emacs_saves")))
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 ;; Keep Customize-generated code out of init.el by redirecting it to its own file
 (setq custom-file (concat user-emacs-directory "custom.el"))
@@ -105,23 +106,40 @@
 ;; Enable clipboard sync with the X11 / Wayland clipboard
 (xclip-mode 1)
 
+;; Enable magit
+(use-package magit
+  :ensure t)
+
 ;; Enable Evil
 (use-package evil
+  :ensure t
   :init
-  ;; enable scroll up with Ctrl+u
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  ;; C-u scrolls like vim
   (setq evil-want-C-u-scroll t)
+  ;; let org-mode have TAB
+  (setq evil-want-C-i-jump nil)
   :config
   (evil-mode 1)
   ;; use visual line motions even outside of visual-line-mode
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-  (evil-global-set-key 'motion "k" 'evil-previous-visual-line))
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+  ;; Restore TAB for org-mode folding in normal state
+  (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
+  (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle))
 
 ;; Enable evil-mode in magit, dired, help etc.
-(evil-collection-init)
+(use-package evil-collection
+  :ensure t
+  :after evil
+  :config
+  (evil-collection-init))
 
 ;; Enable snippet system build into org mode
 (with-eval-after-load 'org
   (require 'org-tempo))
+
 
 ;; ---------------------------------------------------------------------------
 ;; Keybindings
