@@ -146,3 +146,7 @@
 
 ;; Rename buffer
 (global-set-key (kbd "C-c r") #'rename-buffer)
+
+;; Better search in org-mode
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c s") #'counsel-rg))
