@@ -42,15 +42,6 @@
 (unless (package-installed-p 'counsel)
   (package-install 'counsel))
 
-
-;; Download Evil
-;;(unless (package-installed-p 'evil)
-;;  (package-install 'evil))
-
-;; Download Evil collection
-;;(unless (package-installed-p 'evil-collection)
-;;  (package-install 'evil-collection))
-
 ;; ---------------------------------------------------------------------------
 ;; UI / Appearance
 ;; ---------------------------------------------------------------------------
@@ -140,7 +131,6 @@
 ;; Enable snippet system build into org mode
 (with-eval-after-load 'org
   (require 'org-tempo))
-
 
 ;; ---------------------------------------------------------------------------
 ;; Keybindings
