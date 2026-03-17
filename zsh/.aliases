@@ -41,7 +41,7 @@ if [[ -n "$INSIDE_EMACS" ]]; then
   fi
 else
   if command -v eza &>/dev/null; then
-    alias ll="eza ${_eza_flags[*]} --icons"
+    alias ll="eza ${_eza_flags[*]}"
   else
     alias ll='ls -lha --color'
   fi
