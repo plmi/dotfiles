@@ -73,6 +73,7 @@
 ;; ---------------------------------------------------------------------------
 
 ;; Write backups and auto-saves to /tmp instead of cluttering source dirs
+(make-directory "~/.emacs.d/backups" t)
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 ;; Keep Customize-generated code out of init.el by redirecting it to its own file
