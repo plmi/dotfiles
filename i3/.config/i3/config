@@ -9,6 +9,9 @@ set $menu rofi -show drun
 font pango:monospace 10
 
 # Autostart
+# Emacs daemon (client-server mode for instant startup)
+# To kill the server: emacsclient -e '(kill-emacs)'
+exec --no-startup-id emacs --daemon
 exec --no-startup-id ~/.local/bin/set_wallpaper
 exec --no-startup-id nm-applet
 exec --no-startup-id /usr/bin/lxqt-policykit-agent
