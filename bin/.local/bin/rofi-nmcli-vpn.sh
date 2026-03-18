@@ -7,7 +7,6 @@ mapfile -t vpns < <(nmcli -t -f NAME,TYPE connection show | awk -F: '$2=="vpn"{p
 active_vpn=$(nmcli -t -f NAME,TYPE connection show --active | awk -F: '$2=="vpn"{print $1}')
 
 menu=()
-
 for vpn in "${vpns[@]}"; do
     if [[ "$vpn" == "$active_vpn" ]]; then
         menu+=("● $vpn (connected)")
@@ -17,10 +16,10 @@ for vpn in "${vpns[@]}"; do
 done
 
 choice=$(printf '%s\n' "${menu[@]}" | rofi -dmenu -i -p "🔒 VPN")
-
 [[ -z "$choice" ]] && exit 0
 
-vpn=$(echo "$choice" | sed -E 's/^[●○] ([^ ]+).*/\1/')
+# Fixed: handles VPN names with spaces
+vpn=$(echo "$choice" | sed -E 's/^[●○] //; s/ \(connected\)$//')
 
 # Case 1: user selected the currently connected VPN → disconnect
 if [[ "$vpn" == "$active_vpn" ]]; then
@@ -39,6 +38,10 @@ if [[ -n "$active_vpn" ]]; then
         exit
     fi
 fi
+
+# Fix default route takeover: ensure VPN uses split tunneling
+nmcli connection modify "$vpn" ipv4.never-default yes
+nmcli connection modify "$vpn" ipv6.never-default yes
 
 # Connect new VPN
 if nmcli connection up "$vpn"; then
