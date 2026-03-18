@@ -9,6 +9,10 @@ path+=("$HOME/.dotnet/")
 path+=("$HOME/.cargo/bin")
 path+=("${HOME}/.local/bin")
 path+=("${HOME}/.antigravity/antigravity/bin")
+path+=("$DOTFILES/bin/.local/bin")
+path+=("$HOME/.dotnet/")
+path+=("$HOME/.cargo/bin")
+
 # Created by `pipx` on 2024-11-13 22:39:21
 if [[ "$OSTYPE" == "darwin"* ]]; then
   path+=('/Users/michael/.local/bin')

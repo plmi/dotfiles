@@ -57,6 +57,9 @@ bindsym $mod+Down  focus down
 bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
+# Swap two panes (DWM-style)
+bindsym $mod+Shift+Return mark --add _swap, focus left, swap container with mark _swap, unmark _swap
+
 # ── Move windows ──────────────────────────────────────────────────────────────
 
 bindsym $mod+Shift+h move left
