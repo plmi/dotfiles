@@ -151,6 +151,9 @@
 ;; Keybindings
 ;; ---------------------------------------------------------------------------
 
+;; Make C-x C-c close the client frame instead of killing the server
+(global-set-key (kbd "C-x C-c") #'delete-frame)
+
 ;; multi-vterm: open/cycle/rename terminal instances
 (global-set-key (kbd "C-c t v") #'multi-vterm)
 (global-set-key (kbd "C-c t n") #'multi-vterm-next)
