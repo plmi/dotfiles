@@ -69,13 +69,18 @@ function bindiff {
 }
 
 function tree {
+  if ! command -v eza &> /dev/null; then
+    echo "Error: 'eza' is not installed. Please install it first." >&2
+    return 1
+  fi
+
   DEPTH_LEVEL=$(
     find . -type d -not -path '*/.git'\
       -exec bash -c 'echo $(tr -cd / <<< "$1"|wc -c):$1' -- {} \; | \
       sort -n | tail -n 1 | awk -F: '{print $1+1}'
   )
-  exa --git-ignore --tree --all --ignore-glob ".git" \
-	  --level="${DEPTH_LEVEL}" .
+  eza --git-ignore --tree --all --ignore-glob ".git" \
+          --level="${DEPTH_LEVEL}" .
 }
 
 function help() {
