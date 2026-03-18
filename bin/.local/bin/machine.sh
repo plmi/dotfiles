@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# OSCP Lab Directory Scaffolder
+# Lab Directory Scaffolder
 # Usage: ./new_machine.sh <platform> <machine_name>
 
-BASE_DIR="$HOME/OSCP"
+BASE_DIR="$HOME/machines"
 
 declare -A PLATFORMS=(
-    ["offsec"]="01_OffSec"
-    ["pg"]="02_ProvingGrounds"
-    ["htb"]="03_HackTheBox"
-    ["thm"]="04_TryHackMe"
+    ["offsec"]="offsec"
+    ["pg"]="proving-grounds"
+    ["htb"]="hackthebox"
+    ["thm"]="tryhackme"
 )
 
 if [[ $# -ne 2 ]]; then
@@ -32,6 +32,11 @@ if [[ -z "${PLATFORMS[$PLATFORM_KEY]}" ]]; then
     echo "Error: Unknown platform '$1'"
     echo "Valid options: offsec, pg, htb, thm"
     exit 1
+fi
+
+if [[ ! -d "$BASE_DIR" ]]; then
+    echo "Creating $BASE_DIR..."
+    mkdir -p "$BASE_DIR"
 fi
 
 MACHINE_DIR="$BASE_DIR/${PLATFORMS[$PLATFORM_KEY]}/$MACHINE_NAME"
