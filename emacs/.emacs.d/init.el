@@ -59,6 +59,12 @@
 ;; Show line numbers in every buffer
 (global-display-line-numbers-mode 1)
 
+;; Enable selection with mouse
+(setq select-enable-clipboard t)
+(setq select-enable-primary t)
+(setq mouse-wheel-mode 1)
+(setq xterm-mouse-mode 1)
+
 ;; ---------------------------------------------------------------------------
 ;; File Management
 ;; ---------------------------------------------------------------------------
