@@ -2,11 +2,6 @@ export EDITOR="$(which nvim)"
 export DOTFILES="$HOME/dotfiles"
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# path
-path+=("$DOTFILES/bin/.local/bin")
-path+=("$HOME/.dotnet/")
-export PATH
-
 # zsh
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
