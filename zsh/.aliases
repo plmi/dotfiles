@@ -2,6 +2,7 @@
 
 # system
 alias v="${EDITOR}"
+alias e="emacs -nw"
 alias emacs="emacs -nw"
 alias bathelp='bat --plain --language=help'
 alias clipboard='xclip -sel clipboard'
