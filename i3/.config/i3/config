@@ -71,7 +71,7 @@ bindsym $mod+Shift+Right move right
 # ── Layout ────────────────────────────────────────────────────────────────────
 
 bindsym $mod+t split toggle
-bindsym $mod+f fullscreen toggle
+#bindsym $mod+f fullscreen toggle
 
 # Toggle floating
 bindsym $mod+Shift+t floating toggle
