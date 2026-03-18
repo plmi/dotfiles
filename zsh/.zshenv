@@ -2,7 +2,6 @@ export EDITOR="$(which nvim)"
 export DOTFILES="$HOME/dotfiles"
 export XDG_CONFIG_HOME="$HOME/.config"
 
-
 # zsh
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
