@@ -18,3 +18,6 @@ export PATH
 
 # brew
 export HOMEBREW_NO_ANALYTICS=1
+
+# burp-suite
+export _JAVA_OPTIONS="-Dsun.java2d.uiScale=2.0"
