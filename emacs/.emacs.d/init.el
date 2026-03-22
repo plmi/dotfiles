@@ -198,3 +198,19 @@ directory and insert a relative org-mode link at point."
 
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c i s") #'my/org-insert-screenshot))
+
+(defun my/org-paste-command-output ()
+  "Paste clipboard content as org-mode src/example blocks.
+The first line is treated as the command and wrapped in a bash src block.
+Any remaining lines are treated as output and wrapped in an example block."
+  (interactive)
+  (let* ((clipboard (current-kill 0))
+         (lines     (split-string clipboard "\n"))
+         (command   (car lines))
+         (output    (mapconcat 'identity (cdr lines) "\n")))
+    (insert (format "#+BEGIN_SRC bash\n%s\n#+END_SRC" command))
+    (unless (string-blank-p output)
+      (insert (format "\n#+BEGIN_EXAMPLE\n%s\n#+END_EXAMPLE" output)))))
+
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c i p") #'my/org-paste-command-output))
