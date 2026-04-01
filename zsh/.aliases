@@ -3,7 +3,6 @@
 # system
 alias v="${EDITOR}"
 alias e="emacsclient -nw -a ''"
-alias emacs="emacsclient -nw -a ''"
 alias bathelp='bat --plain --language=help'
 alias clipboard='xclip -sel clipboard'
 alias bb='sudo shutdown -h now'
