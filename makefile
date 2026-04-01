@@ -10,7 +10,7 @@ SUDO ?= sudo
 
 # Shared package groups
 BASE_PACKAGES := \
-	bin git nvim stow tmux vim yazi zathura zsh eza sxiv
+	bin git nvim stow tmux vim yazi zathura zsh eza sxiv emacs
 
 MEDIA_PACKAGES := \
 	mpd ncmpcpp
@@ -28,18 +28,23 @@ PACKAGES_macos-aerospace := \
 	$(BASE_PACKAGES) \
 	aerospace karabiner
 
+PACKAGES_arch-desktop := \
+	$(BASE_PACKAGES) $(MEDIA_PACKAGES)
+
 # Optional system packages per profile.
 # These are stowed to SYSTEM_TARGET with sudo in the same make command.
 SYSTEM_PACKAGES_fedora-hyprland := etc
 SYSTEM_PACKAGES_macos-aerospace :=
 SYSTEM_PACKAGES_kali-i3 :=
+SYSTEM_PACKAGES_arch-desktop :=
 
-PROFILES := fedora-hyprland macos-aerospace kali-i3
+PROFILES := fedora-hyprland macos-aerospace kali-i3 arch-desktop
 
 .PHONY: help list-profiles list-packages \
 	fedora-hyprland unfedora-hyprland \
 	macos-aerospace unmacos-aerospace \
 	kali-i3 unkali-i3 \
+	arch-desktop unarch-desktop \
 	_apply-profile _unapply-profile \
 	everything uneverything all delete
 
@@ -109,6 +114,12 @@ kali-i3: _apply-profile
 
 unkali-i3: PROFILE=kali-i3
 unkali-i3: _unapply-profile
+
+arch-desktop: PROFILE=arch-desktop
+arch-desktop: _apply-profile
+
+unarch-desktop: PROFILE=arch-desktop
+unarch-desktop: _unapply-profile
 
 # Convenience target: install or remove every package folder.
 everything:

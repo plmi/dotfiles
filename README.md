@@ -21,11 +21,13 @@ make un<profile>    # remove a profile
 | `fedora-hyprland` | Fedora, Hyprland (Wayland) |
 | `kali-i3` | Kali Linux, i3 (X11) |
 | `macos-aerospace` | macOS, AeroSpace tiling WM |
+| `arch-desktop` | Arch Linux, desktop |
 
 ```sh
 make fedora-hyprland
 make kali-i3
 make macos-aerospace
+make arch-desktop
 ```
 
 ## Options
