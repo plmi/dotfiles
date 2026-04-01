@@ -21,14 +21,14 @@
 ;; ---------------------------------------------------------------------------
 
 ;; vterm - terminal emulator inside Emacs
-(unless (package-installed-p 'vterm)
-  (package-install 'vterm))
+;;(unless (package-installed-p 'vterm)
+;;  (package-install 'vterm))
 
 ;; multi-vterm - manage multiple vterm instances (only if vterm loaded cleanly)
-(when (require 'vterm nil 'noerror)
-  (unless (package-installed-p 'multi-vterm)
-    (package-install 'multi-vterm))
-  (require 'multi-vterm))
+;;(when (require 'vterm nil 'noerror)
+;;  (unless (package-installed-p 'multi-vterm)
+;;    (package-install 'multi-vterm))
+;;  (require 'multi-vterm))
 
 ;; xclip - sync kill-ring with system clipboard via xclip
 (unless (package-installed-p 'xclip)
@@ -96,7 +96,7 @@
 ;; ---------------------------------------------------------------------------
 
 ;; Load vterm explicitly so its functions are available
-(require 'vterm)
+;;(require 'vterm)
 
 ;; Enable ivy completion framework globally
 (ivy-mode 1)
@@ -155,9 +155,9 @@
 (global-set-key (kbd "C-x C-c") #'delete-frame)
 
 ;; multi-vterm: open/cycle/rename terminal instances
-(global-set-key (kbd "C-c t v") #'multi-vterm)
-(global-set-key (kbd "C-c t n") #'multi-vterm-next)
-(global-set-key (kbd "C-c t p") #'multi-vterm-prev)
+;;(global-set-key (kbd "C-c t v") #'multi-vterm)
+;;(global-set-key (kbd "C-c t n") #'multi-vterm-next)
+;;(global-set-key (kbd "C-c t p") #'multi-vterm-prev)
 
 ;; Explicit mark binding — ensures it works correctly in terminal frames
 (global-set-key (kbd "C-@") #'set-mark-command)
