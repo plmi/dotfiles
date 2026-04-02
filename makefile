@@ -26,7 +26,7 @@ PACKAGES_kali-i3 := \
 
 PACKAGES_macos-aerospace := \
 	$(BASE_PACKAGES) \
-	aerospace karabiner
+	aerospace ghostty karabiner
 
 PACKAGES_arch-desktop := \
 	$(BASE_PACKAGES) $(MEDIA_PACKAGES)
