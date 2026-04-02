@@ -6,6 +6,7 @@ fi
 
 path+=("$DOTFILES/bin/.local/bin")
 path+=("$HOME/.dotnet/")
+path+=("$HOME/.dotnet/tools")
 path+=("$HOME/.cargo/bin")
 path+=("${HOME}/.local/bin")
 path+=("${HOME}/.antigravity/antigravity/bin")
