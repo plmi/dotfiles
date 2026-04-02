@@ -40,6 +40,11 @@
 ;; UI / Appearance
 ;; ---------------------------------------------------------------------------
 
+;; GUI-mode appearance: match Ghostty terminal (Menlo 16, white on black)
+(add-to-list 'default-frame-alist '(font . "Menlo-16"))
+(add-to-list 'default-frame-alist '(foreground-color . "#ffffff"))
+(add-to-list 'default-frame-alist '(background-color . "#282c34"))
+
 ;; Hide the icon toolbar
 (tool-bar-mode -1)
 ;; Hide the menu bar
@@ -202,7 +207,7 @@ Any remaining lines are treated as output and wrapped in an example block."
       (insert (format "\n#+BEGIN_EXAMPLE\n%s\n#+END_EXAMPLE" output)))))
 
 (with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c i p") #'my/org-paste-command-output))
+  (define-key org-mode-map (kbd "C-c i c") #'my/org-paste-command-output))
 
 ;; https://mpas.github.io/posts/2021/03/29/20210329-paste-image-from-clipboard-directly-into-org-mode-document/
 (defun my/insert-clipboard-image (filename)
@@ -238,3 +243,4 @@ Any remaining lines are treated as output and wrapped in an example block."
   (when (display-graphic-p)
     (setq org-image-actual-width '(500))
     (add-hook 'org-mode-hook (lambda () (org-display-inline-images t)))))
+
