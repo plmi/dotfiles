@@ -20,16 +20,6 @@
 ;; Package Installation
 ;; ---------------------------------------------------------------------------
 
-;; vterm - terminal emulator inside Emacs
-;;(unless (package-installed-p 'vterm)
-;;  (package-install 'vterm))
-
-;; multi-vterm - manage multiple vterm instances (only if vterm loaded cleanly)
-;;(when (require 'vterm nil 'noerror)
-;;  (unless (package-installed-p 'multi-vterm)
-;;    (package-install 'multi-vterm))
-;;  (require 'multi-vterm))
-
 ;; xclip - sync kill-ring with system clipboard via xclip
 (unless (package-installed-p 'xclip)
   (package-install 'xclip))
@@ -41,6 +31,10 @@
 ;; counsel - ivy-enhanced replacements for common Emacs commands
 (unless (package-installed-p 'counsel)
   (package-install 'counsel))
+
+;; s - string manipulation library (used by my/insert-clipboard-image)
+(unless (package-installed-p 's)
+  (package-install 's))
 
 ;; ---------------------------------------------------------------------------
 ;; UI / Appearance
@@ -62,8 +56,8 @@
 ;; Enable selection with mouse
 (setq select-enable-clipboard t)
 (setq select-enable-primary t)
-(setq mouse-wheel-mode 1)
-(setq xterm-mouse-mode 1)
+(mouse-wheel-mode 1)
+(xterm-mouse-mode 1)
 
 ;; ---------------------------------------------------------------------------
 ;; File Management
@@ -94,9 +88,6 @@
 ;; ---------------------------------------------------------------------------
 ;; Package Setup
 ;; ---------------------------------------------------------------------------
-
-;; Load vterm explicitly so its functions are available
-;;(require 'vterm)
 
 ;; Enable ivy completion framework globally
 (ivy-mode 1)
@@ -138,6 +129,9 @@
 (with-eval-after-load 'org
   (require 'org-tempo))
 
+;; Set all org agenda files
+(setq org-agenda-files '("~/.emacs.d/.tasks.org"))
+
 ;; ---------------------------------------------------------------------------
 ;; Server
 ;; ---------------------------------------------------------------------------
@@ -153,11 +147,6 @@
 
 ;; Make C-x C-c close the client frame instead of killing the server
 (global-set-key (kbd "C-x C-c") #'delete-frame)
-
-;; multi-vterm: open/cycle/rename terminal instances
-;;(global-set-key (kbd "C-c t v") #'multi-vterm)
-;;(global-set-key (kbd "C-c t n") #'multi-vterm-next)
-;;(global-set-key (kbd "C-c t p") #'multi-vterm-prev)
 
 ;; Explicit mark binding — ensures it works correctly in terminal frames
 (global-set-key (kbd "C-@") #'set-mark-command)
@@ -214,3 +203,38 @@ Any remaining lines are treated as output and wrapped in an example block."
 
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c i p") #'my/org-paste-command-output))
+
+;; https://mpas.github.io/posts/2021/03/29/20210329-paste-image-from-clipboard-directly-into-org-mode-document/
+(defun my/insert-clipboard-image (filename)
+  "Inserts an image from the clipboard"
+  (interactive "sFilename to paste: ")
+  (let ((file
+         (concat
+          (file-name-directory buffer-file-name)
+          "images/"
+          (format-time-string "%Y%m%d_%H%M%S_-_")
+          (if (bound-and-true-p my/insert-clipboard-image-use-buffername)
+              (concat (s-replace "-" "_"
+                                 (downcase (file-name-sans-extension (buffer-name)))) "_-_")
+            "")
+          (if (bound-and-true-p my/insert-clipboard-image-use-headername)
+              (concat (s-replace " " "_" (downcase (nth 4 (org-heading-components)))) "_-_")
+            "")
+          (file-name-sans-extension filename) ".png")))
+
+    ;; create images directory
+    (unless (file-exists-p (file-name-directory file))
+      (make-directory (file-name-directory file)))
+
+    ;; paste file from clipboard
+    (shell-command (concat "pngpaste " file))
+    (insert (concat "[[./images/" (file-name-nondirectory file) "]]"))))
+
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c i i") #'my/insert-clipboard-image))
+
+;; This display the taken screenshot in a acceptable format in your org-mode file.
+(with-eval-after-load 'org
+  (when (display-graphic-p)
+    (setq org-image-actual-width '(500))
+    (add-hook 'org-mode-hook (lambda () (org-display-inline-images t)))))
