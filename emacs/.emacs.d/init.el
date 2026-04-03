@@ -41,6 +41,11 @@
 ;; ---------------------------------------------------------------------------
 
 ;; GUI-mode appearance: match Ghostty terminal (Menlo 16, white on black)
+;; Keep frame chrome disabled for frames created after startup too.
+;; `tool-bar-mode -1` affects the current frame, but `emacsclient` can create
+;; later GUI frames from frame defaults, so we also set the frame parameters.
+(add-to-list 'default-frame-alist '(tool-bar-lines . 0))
+(add-to-list 'initial-frame-alist '(tool-bar-lines . 0))
 (add-to-list 'default-frame-alist '(font . "Menlo-16"))
 (add-to-list 'default-frame-alist '(foreground-color . "#ffffff"))
 (add-to-list 'default-frame-alist '(background-color . "#282c34"))
@@ -243,4 +248,3 @@ Any remaining lines are treated as output and wrapped in an example block."
   (when (display-graphic-p)
     (setq org-image-actual-width '(500))
     (add-hook 'org-mode-hook (lambda () (org-display-inline-images t)))))
-
