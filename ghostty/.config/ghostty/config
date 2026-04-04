@@ -1,3 +1,4 @@
+term = xterm-256color
 font-family = Menlo
 font-size = 16
 foreground = ffffff
