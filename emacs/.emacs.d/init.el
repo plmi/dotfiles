@@ -248,3 +248,17 @@ Any remaining lines are treated as output and wrapped in an example block."
   (when (display-graphic-p)
     (setq org-image-actual-width '(500))
     (add-hook 'org-mode-hook (lambda () (org-display-inline-images t)))))
+
+;; Load yasnippet
+(use-package yasnippet
+  :ensure t
+  :hook (org-mode . yas-minor-mode)
+  :config
+  ;; org-mode's TAB is bound in the major-mode map and overrides yasnippet's
+  ;; minor-mode TAB. Use org-tab-first-hook so yas-expand runs first; if no
+  ;; snippet matches it returns nil and org's normal TAB handling continues.
+  (defun my/yas-org-expand ()
+    (let ((yas-fallback-behavior 'return-nil))
+      (yas-expand)))
+  (add-hook 'org-tab-first-hook #'my/yas-org-expand)
+  (yas-reload-all))

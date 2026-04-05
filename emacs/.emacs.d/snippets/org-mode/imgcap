@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: org-image-caption
+# key: imgcap
+# --
+#+CAPTION: ${1:Your caption}
+#+NAME: fig:${2:yourimage}
+#+ATTR_HTML: :width 900px
+$0
