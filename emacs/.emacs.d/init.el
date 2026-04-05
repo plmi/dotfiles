@@ -198,7 +198,7 @@ directory and insert a relative org-mode link at point."
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c i s") #'my/org-insert-screenshot))
 
-(defun my/org-paste-command-output ()
+(defun my/org-paste-terminal-output ()
   "Paste clipboard content as org-mode src/example blocks.
 The first line is treated as the command and wrapped in a bash src block.
 Any remaining lines are treated as output and wrapped in an example block."
@@ -212,7 +212,7 @@ Any remaining lines are treated as output and wrapped in an example block."
       (insert (format "\n#+BEGIN_EXAMPLE\n%s\n#+END_EXAMPLE" output)))))
 
 (with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c i c") #'my/org-paste-command-output))
+  (define-key org-mode-map (kbd "C-c i t") #'my/org-paste-terminal-output))
 
 ;; https://mpas.github.io/posts/2021/03/29/20210329-paste-image-from-clipboard-directly-into-org-mode-document/
 (defun my/insert-clipboard-image (filename)
@@ -241,7 +241,7 @@ Any remaining lines are treated as output and wrapped in an example block."
     (insert (concat "[[./images/" (file-name-nondirectory file) "]]"))))
 
 (with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c i i") #'my/insert-clipboard-image))
+  (define-key org-mode-map (kbd "C-c i c") #'my/insert-clipboard-image))
 
 ;; This display the taken screenshot in a acceptable format in your org-mode file.
 (with-eval-after-load 'org
@@ -262,3 +262,6 @@ Any remaining lines are treated as output and wrapped in an example block."
       (yas-expand)))
   (add-hook 'org-tab-first-hook #'my/yas-org-expand)
   (yas-reload-all))
+
+;; Enable :LOGBOOK: for notes in org-mode
+(setq org-log-into-drawer t)
