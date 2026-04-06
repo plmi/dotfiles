@@ -32,10 +32,6 @@
 (unless (package-installed-p 'counsel)
   (package-install 'counsel))
 
-;; s - string manipulation library (used by my/insert-clipboard-image)
-(unless (package-installed-p 's)
-  (package-install 's))
-
 ;; ---------------------------------------------------------------------------
 ;; UI / Appearance
 ;; ---------------------------------------------------------------------------
@@ -214,35 +210,6 @@ Any remaining lines are treated as output and wrapped in an example block."
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c i t") #'my/org-paste-terminal-output))
 
-;; https://mpas.github.io/posts/2021/03/29/20210329-paste-image-from-clipboard-directly-into-org-mode-document/
-(defun my/insert-clipboard-image (filename)
-  "Inserts an image from the clipboard"
-  (interactive "sFilename to paste: ")
-  (let ((file
-         (concat
-          (file-name-directory buffer-file-name)
-          "images/"
-          (format-time-string "%Y%m%d_%H%M%S_-_")
-          (if (bound-and-true-p my/insert-clipboard-image-use-buffername)
-              (concat (s-replace "-" "_"
-                                 (downcase (file-name-sans-extension (buffer-name)))) "_-_")
-            "")
-          (if (bound-and-true-p my/insert-clipboard-image-use-headername)
-              (concat (s-replace " " "_" (downcase (nth 4 (org-heading-components)))) "_-_")
-            "")
-          (file-name-sans-extension filename) ".png")))
-
-    ;; create images directory
-    (unless (file-exists-p (file-name-directory file))
-      (make-directory (file-name-directory file)))
-
-    ;; paste file from clipboard
-    (shell-command (concat "pngpaste " file))
-    (insert (concat "[[./images/" (file-name-nondirectory file) "]]"))))
-
-(with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c i c") #'my/insert-clipboard-image))
-
 ;; This display the taken screenshot in a acceptable format in your org-mode file.
 (with-eval-after-load 'org
   (when (display-graphic-p)
@@ -265,3 +232,8 @@ Any remaining lines are treated as output and wrapped in an example block."
 
 ;; Enable :LOGBOOK: for notes in org-mode
 (setq org-log-into-drawer t)
+
+;; Add my custom scripts
+(add-to-list 'load-path "~/.emacs.d/lisp")
+;; Stage all images referenced in an org file
+(require 'my-magit-org-images)
