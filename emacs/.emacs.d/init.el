@@ -4,12 +4,10 @@
 
 (require 'package)
 
-;; Add GNU ELPA and MELPA as package sources
 (setq package-archives
       '(("gnu"   . "https://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")))
 
-;; Initialize the package system
 (package-initialize)
 
 ;; Refresh package list on first run (when cache is empty)
@@ -17,51 +15,34 @@
   (package-refresh-contents))
 
 ;; ---------------------------------------------------------------------------
-;; Package Installation
+;; Custom Scripts
 ;; ---------------------------------------------------------------------------
 
-;; xclip - sync kill-ring with system clipboard via xclip
-(unless (package-installed-p 'xclip)
-  (package-install 'xclip))
-
-;; ivy - lightweight completion framework
-(unless (package-installed-p 'ivy)
-  (package-install 'ivy))
-
-;; counsel - ivy-enhanced replacements for common Emacs commands
-(unless (package-installed-p 'counsel)
-  (package-install 'counsel))
+;; Add lisp/ to load-path so custom modules can be required below
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 ;; ---------------------------------------------------------------------------
 ;; UI / Appearance
 ;; ---------------------------------------------------------------------------
 
-;; GUI-mode appearance: match Ghostty terminal (Menlo 16, white on black)
-;; Keep frame chrome disabled for frames created after startup too.
-;; `tool-bar-mode -1` affects the current frame, but `emacsclient` can create
-;; later GUI frames from frame defaults, so we also set the frame parameters.
+;; Frame defaults apply to all frames, including those opened via emacsclient.
+;; The mode calls below only affect the current frame, so we also suppress
+;; chrome via frame-alist to keep later frames consistent.
 (add-to-list 'default-frame-alist '(tool-bar-lines . 0))
 (add-to-list 'initial-frame-alist '(tool-bar-lines . 0))
 (add-to-list 'default-frame-alist '(font . "Menlo-16"))
 (add-to-list 'default-frame-alist '(foreground-color . "#ffffff"))
 (add-to-list 'default-frame-alist '(background-color . "#282c34"))
 
-;; Hide the icon toolbar
-(tool-bar-mode -1)
-;; Hide the menu bar
-(menu-bar-mode -1)
-;; Hide scroll bars
+(tool-bar-mode   -1)
+(menu-bar-mode   -1)
 (scroll-bar-mode -1)
-
-;; Skip the default splash/welcome screen on startup
 (setq inhibit-startup-screen t)
-
-;; Show line numbers in every buffer
 (global-display-line-numbers-mode 1)
 
-;; Enable selection with mouse
+;; Mouse and clipboard support in terminal frames
 (setq select-enable-clipboard t)
-(setq select-enable-primary t)
+(setq select-enable-primary   t)
 (mouse-wheel-mode 1)
 (xterm-mouse-mode 1)
 
@@ -69,22 +50,110 @@
 ;; File Management
 ;; ---------------------------------------------------------------------------
 
-;; Write backups and auto-saves to /tmp instead of cluttering source dirs
+;; Redirect backups to avoid cluttering source directories
 (make-directory "~/.emacs.d/backups" t)
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
-;; Keep Customize-generated code out of init.el by redirecting it to its own file
+;; Keep Customize-generated code out of init.el
 (setq custom-file (concat user-emacs-directory "custom.el"))
-;; Only load it if it actually exists yet
 (when (file-exists-p custom-file)
   (load custom-file))
+
+;; ---------------------------------------------------------------------------
+;; Evil (Vim emulation)
+;; ---------------------------------------------------------------------------
+
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)  ; C-u scrolls like vim
+  (setq evil-want-C-i-jump nil)  ; leave TAB for org-mode
+  :config
+  (evil-mode 1)
+  ;; j/k move by display line so wrapped lines behave naturally
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+  ;; Restore TAB for org-mode folding in normal state
+  (evil-define-key 'normal org-mode-map (kbd "TAB")   #'org-cycle)
+  (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle))
+
+;; Extends evil keybindings to magit, dired, help, etc.
+(use-package evil-collection
+  :ensure t
+  :after evil
+  :config
+  (evil-collection-init))
+
+;; ---------------------------------------------------------------------------
+;; Completion
+;; ---------------------------------------------------------------------------
+
+(unless (package-installed-p 'ivy)     (package-install 'ivy))
+(unless (package-installed-p 'counsel) (package-install 'counsel))
+
+(ivy-mode 1)  ; lightweight global completion framework
+
+;; ---------------------------------------------------------------------------
+;; Clipboard
+;; ---------------------------------------------------------------------------
+
+(unless (package-installed-p 'xclip) (package-install 'xclip))
+
+(xclip-mode 1)  ; sync kill-ring with X11 / Wayland clipboard
+
+;; ---------------------------------------------------------------------------
+;; Magit
+;; ---------------------------------------------------------------------------
+
+(use-package magit :ensure t)
+
+;; Stage an org file together with all images it links to
+(require 'my-magit-org-images)
+
+;; ---------------------------------------------------------------------------
+;; Org Mode
+;; ---------------------------------------------------------------------------
+
+;; org-tempo enables <s TAB-style structure template expansion
+(with-eval-after-load 'org
+  (require 'org-tempo))
+
+(setq org-agenda-files '("~/.emacs.d/.tasks.org"))
+
+;; Store notes and state changes in :LOGBOOK: drawers
+(setq org-log-into-drawer t)
+
+;; Display inline images in GUI frames, capped at 500 px wide
+(with-eval-after-load 'org
+  (when (display-graphic-p)
+    (setq org-image-actual-width '(500))
+    (add-hook 'org-mode-hook (lambda () (org-display-inline-images t)))))
+
+;; yasnippet — active only in org-mode.
+;; org's major-mode TAB overrides the minor-mode binding, so yas-expand is
+;; hooked into org-tab-first-hook and returns nil when no snippet matches,
+;; letting org's normal TAB behaviour take over.
+(use-package yasnippet
+  :ensure t
+  :hook (org-mode . yas-minor-mode)
+  :config
+  (require 'my-yas-org)
+  (add-hook 'org-tab-first-hook #'my/yas-org-expand)
+  (yas-reload-all))
+
+;; Insert the latest screenshot from ~/screenshots as an org image block (C-c i s)
+(require 'my-org-screenshot)
+
+;; Paste clipboard terminal output as bash src + example blocks (C-c i t)
+(require 'my-org-paste-terminal)
 
 ;; ---------------------------------------------------------------------------
 ;; Search
 ;; ---------------------------------------------------------------------------
 
-;; After isearch ends, leave point at the beginning of the match
-;; (default Emacs behaviour leaves it at the end, which can be surprising)
+;; Leave point at the start of the match after isearch, not the end
 (add-hook 'isearch-mode-end-hook
           (lambda ()
             (when (and isearch-forward
@@ -92,57 +161,10 @@
               (goto-char isearch-other-end))))
 
 ;; ---------------------------------------------------------------------------
-;; Package Setup
-;; ---------------------------------------------------------------------------
-
-;; Enable ivy completion framework globally
-(ivy-mode 1)
-
-;; Enable clipboard sync with the X11 / Wayland clipboard
-(xclip-mode 1)
-
-;; Enable magit
-(use-package magit
-  :ensure t)
-
-;; Enable Evil
-(use-package evil
-  :ensure t
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  ;; C-u scrolls like vim
-  (setq evil-want-C-u-scroll t)
-  ;; let org-mode have TAB
-  (setq evil-want-C-i-jump nil)
-  :config
-  (evil-mode 1)
-  ;; use visual line motions even outside of visual-line-mode
-  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-  ;; Restore TAB for org-mode folding in normal state
-  (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
-  (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle))
-
-;; Enable evil-mode in magit, dired, help etc.
-(use-package evil-collection
-  :ensure t
-  :after evil
-  :config
-  (evil-collection-init))
-
-;; Enable snippet system build into org mode
-(with-eval-after-load 'org
-  (require 'org-tempo))
-
-;; Set all org agenda files
-(setq org-agenda-files '("~/.emacs.d/.tasks.org"))
-
-;; ---------------------------------------------------------------------------
 ;; Server
 ;; ---------------------------------------------------------------------------
 
-;; Start the server if not already running (fallback for direct emacs launch)
+;; Start server if not already running so emacsclient can connect
 (require 'server)
 (unless (server-running-p)
   (server-start))
@@ -151,48 +173,13 @@
 ;; Keybindings
 ;; ---------------------------------------------------------------------------
 
-;; Make C-x C-c close the client frame instead of killing the server
+;; Close the client frame instead of killing the server
 (global-set-key (kbd "C-x C-c") #'delete-frame)
 
-;; Explicit mark binding — ensures it works correctly in terminal frames
+;; Ensure set-mark works correctly in terminal frames
 (global-set-key (kbd "C-@") #'set-mark-command)
 
-;; Rename buffer
 (global-set-key (kbd "C-c r") #'rename-buffer)
 
-;; Better search in org-mode
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c s") #'counsel-rg))
-
-;; ---------------------------------------------------------------------------
-;; Screenshots
-;; ---------------------------------------------------------------------------
-
-(require 'my-org-screenshot)
-(require 'my-org-paste-terminal)
-
-;; This display the taken screenshot in a acceptable format in your org-mode file.
-(with-eval-after-load 'org
-  (when (display-graphic-p)
-    (setq org-image-actual-width '(500))
-    (add-hook 'org-mode-hook (lambda () (org-display-inline-images t)))))
-
-;; Load yasnippet
-(use-package yasnippet
-  :ensure t
-  :hook (org-mode . yas-minor-mode)
-  :config
-  ;; org-mode's TAB is bound in the major-mode map and overrides yasnippet's
-  ;; minor-mode TAB. Use org-tab-first-hook so yas-expand runs first; if no
-  ;; snippet matches it returns nil and org's normal TAB handling continues.
-  (require 'my-yas-org)
-  (add-hook 'org-tab-first-hook #'my/yas-org-expand)
-  (yas-reload-all))
-
-;; Enable :LOGBOOK: for notes in org-mode
-(setq org-log-into-drawer t)
-
-;; Add my custom scripts
-(add-to-list 'load-path "~/.emacs.d/lisp")
-;; Stage all images referenced in an org file
-(require 'my-magit-org-images)
