@@ -5,6 +5,9 @@
 (defvar my/org-image-extensions
   '("png" "jpg" "jpeg" "gif" "svg" "webp" "bmp" "tif" "tiff"))
 
+;; Parses ORG-FILE's AST and collects the absolute paths of every local image
+;; it links to (file: links whose extension is in `my/org-image-extensions').
+;; Only paths that actually exist on disk are returned.
 (defun my/org-linked-image-files (org-file)
   (with-temp-buffer
     (insert-file-contents org-file)
@@ -25,6 +28,9 @@
                   (push full result)))))))
       (delete-dups result))))
 
+;; Stages the org file together with all images it references so that a commit
+;; never contains an org file whose linked images are missing from the index.
+;; Defaults to the file at point in the magit status buffer.
 (defun my/magit-stage-org-file-and-linked-images (org-file)
   (interactive
    (list

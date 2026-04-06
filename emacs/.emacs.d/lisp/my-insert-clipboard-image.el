@@ -3,10 +3,15 @@
   (package-install 's))
 
 ;; https://mpas.github.io/posts/2021/03/29/20210329-paste-image-from-clipboard-directly-into-org-mode-document/
+;; Returns the absolute path of the git repository root for the current buffer.
+;; Used by `my/insert-clipboard-image' to resolve relative #+IMAGE_SAVE_DIR paths.
 (defun my/org-git-root ()
     (let ((default-directory (file-name-directory buffer-file-name)))
       (string-trim (shell-command-to-string "git rev-parse --show-toplevel"))))
 
+  ;; Calls pngpaste to write the clipboard image to disk, then inserts an org
+  ;; link at point. The save directory is resolved from #+IMAGE_SAVE_DIR (relative
+  ;; paths are anchored to the git root); falls back to images/ beside the org file.
   (defun my/insert-clipboard-image (filename)
     "Paste a clipboard image into the current org buffer as an inline link.
 
@@ -57,3 +62,5 @@ Bound to C-c i c in org-mode."
 
   (with-eval-after-load 'org
     (define-key org-mode-map (kbd "C-c i c") #'my/insert-clipboard-image))
+
+(provide 'my-insert-clipboard-image)

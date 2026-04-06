@@ -168,47 +168,8 @@
 ;; Screenshots
 ;; ---------------------------------------------------------------------------
 
-(defvar my/screenshot-dir "~/screenshots"
-  "Directory where screenshots are saved.")
-
-(defun my/org-insert-screenshot ()
-  "Copy the latest PNG from `my/screenshot-dir' to the current file's
-directory and insert a relative org-mode link at point."
-  (interactive)
-  (let* ((src-dir (expand-file-name my/screenshot-dir))
-         (files (directory-files src-dir t "\\.png$"))
-         (latest (car (sort files
-                            (lambda (a b)
-                              (time-less-p (nth 5 (file-attributes b))
-                                           (nth 5 (file-attributes a)))))))
-         (dest-name (format-time-string "img%Y%m%dT%H%M%S.png"))
-         (dest-path (expand-file-name dest-name default-directory)))
-    (if (null latest)
-        (user-error "No screenshots found in %s" src-dir)
-      (let* ((caption (read-string "Caption: "))
-             (name    (read-string "Figure name (fig:...): " "fig:")))
-        (copy-file latest dest-path)
-        (insert (format "#+CAPTION: %s\n#+NAME: %s\n#+ATTR_HTML: :width 900px\n[[./%s]]"
-                        caption name dest-name))))))
-
-(with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c i s") #'my/org-insert-screenshot))
-
-(defun my/org-paste-terminal-output ()
-  "Paste clipboard content as org-mode src/example blocks.
-The first line is treated as the command and wrapped in a bash src block.
-Any remaining lines are treated as output and wrapped in an example block."
-  (interactive)
-  (let* ((clipboard (current-kill 0))
-         (lines     (split-string clipboard "\n"))
-         (command   (car lines))
-         (output    (mapconcat 'identity (cdr lines) "\n")))
-    (insert (format "#+BEGIN_SRC bash\n%s\n#+END_SRC" command))
-    (unless (string-blank-p output)
-      (insert (format "\n#+BEGIN_EXAMPLE\n%s\n#+END_EXAMPLE" output)))))
-
-(with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c i t") #'my/org-paste-terminal-output))
+(require 'my-org-screenshot)
+(require 'my-org-paste-terminal)
 
 ;; This display the taken screenshot in a acceptable format in your org-mode file.
 (with-eval-after-load 'org
@@ -224,9 +185,7 @@ Any remaining lines are treated as output and wrapped in an example block."
   ;; org-mode's TAB is bound in the major-mode map and overrides yasnippet's
   ;; minor-mode TAB. Use org-tab-first-hook so yas-expand runs first; if no
   ;; snippet matches it returns nil and org's normal TAB handling continues.
-  (defun my/yas-org-expand ()
-    (let ((yas-fallback-behavior 'return-nil))
-      (yas-expand)))
+  (require 'my-yas-org)
   (add-hook 'org-tab-first-hook #'my/yas-org-expand)
   (yas-reload-all))
 
