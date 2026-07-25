@@ -13,8 +13,8 @@ prepend_keymap = [
   { on = [ "g", "t" ], run = "cd /tmp",        desc = "Go to /tmp" },
 
   # --- macOS integration ---
-  { on = [ "<C-y>" ], run = "shell 'open -R \"$0\"'", desc = "Reveal in Finder" },
-  { on = [ "<C-o>" ], run = "shell 'open \"$@\"'",    desc = "Open with default macOS app" },
+  { on = [ "<C-y>" ], run = "shell 'open -R %h'", desc = "Reveal in Finder" },
+  { on = [ "<C-o>" ], run = "shell 'open %s'",    desc = "Open with default macOS app" },
 
   # --- open a shell in the current directory ---
   { on = [ "<C-t>" ], run = "shell 'tmux new-window -c \"$PWD\"'",       desc = "New tmux window here" },

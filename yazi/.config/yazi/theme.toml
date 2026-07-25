@@ -1,4 +1,3 @@
 [flavor]
-#dark = "catppuccin-macchiato"
-dark = "flexoki-dark"
+dark  = "flexoki-dark"
 light = "flexoki-light"

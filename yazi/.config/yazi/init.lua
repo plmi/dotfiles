@@ -19,11 +19,5 @@ Status:children_add(function()
   }
 end, 500, Status.RIGHT)
 
--- Show symlink target next to the filename, on the left side of the status bar
-Status:children_add(function()
-  local h = cx.active.current.hovered
-  if h == nil or h.link_to == nil then
-    return ""
-  end
-  return ui.Span(" -> " .. tostring(h.link_to)):italic():fg("darkgray")
-end, 3300, Status.LEFT)
+-- Symlink targets are rendered inline by the preset Entity:symlink(),
+-- gated on `[mgr] show_symlink` in yazi.toml -- no status-bar child needed.

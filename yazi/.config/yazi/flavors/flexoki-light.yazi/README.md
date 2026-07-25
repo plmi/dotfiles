@@ -3,7 +3,7 @@
 </div>
 
 <h3 align="center">
-    Kanagawa Dragon Flavor for <a href="https://github.com/sxyazi/yazi">Yazi</a>
+	Flexoki Light Flavor for <a href="https://github.com/sxyazi/yazi">Yazi</a>
 </h3>
 
 ## 👀 Preview
@@ -12,18 +12,22 @@
 
 ## 🎨 Installation
 
-```bash
-ya pkg add marcosvnmelo/kanagawa-dragon
+```sh
+ya pkg add gosxrgxx/flexoki-light
 ```
 
 ## ⚙️ Usage
 
-Add these lines to your `theme.toml` configuration file to use it:
+To set it as your light flavor, change the content of your `theme.toml` to:
 
 ```toml
 [flavor]
-dark = "kanagawa-dragon"
+light = "flexoki-light"
 ```
+
+Make sure your `theme.toml` doesn't contain anything other than `[flavor]`, unless you want to override certain styles of this flavor.
+
+See the [Yazi flavor documentation](https://yazi-rs.github.io/docs/flavors/overview) for more details.
 
 ## 📜 License
 
