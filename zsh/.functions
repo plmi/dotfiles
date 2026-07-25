@@ -143,6 +143,17 @@ function what() {
 #  )
 #}
 
+# Open yazi with `y`; on quit, cd the shell into the directory you ended up in.
+function y() {
+  local tmp cwd
+  tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
 # Load the current target into IP for each new shell.
 if [ -f "$HOME/.target" ]; then
   IP="$(head -n1 "$HOME/.target" | tr -d '\r')"
