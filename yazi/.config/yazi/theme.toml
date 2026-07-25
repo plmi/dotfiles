@@ -1,3 +1,7 @@
+# Pin both slots to the light flavour: yazi picks between them by probing the
+# terminal's background colour, and this terminal is dark, so leaving `dark`
+# on flexoki-dark would never resolve to light. flexoki-light sets its own
+# `[app] overall` background, so it paints light regardless of the terminal.
 [flavor]
-dark  = "flexoki-dark"
+dark  = "flexoki-light"
 light = "flexoki-light"
