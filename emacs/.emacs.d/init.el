@@ -28,7 +28,7 @@
 ;; ---------------------------------------------------------------------------
 
 ;; Add lisp/ to load-path so custom modules can be required below
-(add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; ---------------------------------------------------------------------------
 ;; UI / Appearance
@@ -60,8 +60,9 @@
 ;; ---------------------------------------------------------------------------
 
 ;; Redirect backups to avoid cluttering source directories
-(make-directory "~/.emacs.d/backups" t)
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(let ((backup-dir (expand-file-name "backups" user-emacs-directory)))
+  (make-directory backup-dir t)
+  (setq backup-directory-alist `(("." . ,backup-dir))))
 
 ;; Keep Customize-generated code out of init.el
 (setq custom-file (concat user-emacs-directory "custom.el"))
@@ -130,16 +131,19 @@
 (with-eval-after-load 'org
   (require 'org-tempo))
 
-(setq org-agenda-files '("~/.emacs.d/.tasks.org"))
+(setq org-agenda-files
+      (list (expand-file-name ".tasks.org" user-emacs-directory)))
 
 ;; Store notes and state changes in :LOGBOOK: drawers
 (setq org-log-into-drawer t)
 
 ;; Display inline images in GUI frames, capped at 500 px wide
 (with-eval-after-load 'org
-  (when (display-graphic-p)
-    (setq org-image-actual-width '(500))
-    (add-hook 'org-mode-hook (lambda () (org-display-inline-images t)))))
+  (setq org-image-actual-width '(500))
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (when (display-graphic-p)
+                (org-display-inline-images t)))))
 
 ;; yasnippet — active only in org-mode.
 ;; org's major-mode TAB overrides the minor-mode binding, so yas-expand is
@@ -154,6 +158,9 @@
 
 ;; Insert the latest screenshot from ~/screenshots as an org image block (C-c i s)
 (require 'my-org-screenshot)
+
+;; Paste clipboard image as an org inline image link (C-c i c)
+(require 'my-insert-clipboard-image)
 
 ;; Paste clipboard terminal output as bash src + example blocks (C-c i t)
 (require 'my-org-paste-terminal)
@@ -173,17 +180,17 @@
 ;; Server
 ;; ---------------------------------------------------------------------------
 
-;; Start server if not already running so emacsclient can connect
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+;; Start the server after init so emacsclient connections see a fully loaded
+;; session.
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (require 'server)
+            (unless (server-running-p)
+              (server-start))))
 
 ;; ---------------------------------------------------------------------------
 ;; Keybindings
 ;; ---------------------------------------------------------------------------
-
-;; Close the client frame instead of killing the server
-(global-set-key (kbd "C-x C-c") #'delete-frame)
 
 ;; Ensure set-mark works correctly in terminal frames
 (global-set-key (kbd "C-@") #'set-mark-command)
