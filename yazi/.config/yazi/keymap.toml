@@ -1,8 +1,28 @@
-[manager]
+[mgr]
 prepend_keymap = [
-  { on = [ "<Enter>" ], run = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
-  { on = [ "l" ], run = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
-  { on = [ "p" ], run = "plugin --sync smart-paste", desc = "Paste into the hovered directory or CWD" },
+  # --- existing: smart enter / paste ---
+  { on = [ "<Enter>" ], run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
+  { on = [ "l" ],       run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
+  { on = [ "p" ],       run = "paste", desc = "Paste into the current directory" },
+
+  # --- goto shortcuts (g h / g c / g d are built-in defaults) ---
+  { on = [ "g", "p" ], run = "cd ~/projects",  desc = "Go to ~/projects" },
+  { on = [ "g", "D" ], run = "cd ~/dotfiles",  desc = "Go to ~/dotfiles" },
+  { on = [ "g", "e" ], run = "cd ~/Desktop",   desc = "Go to ~/Desktop" },
+  { on = [ "g", "o" ], run = "cd ~/Documents", desc = "Go to ~/Documents" },
+  { on = [ "g", "t" ], run = "cd /tmp",        desc = "Go to /tmp" },
+
+  # --- macOS integration ---
+  { on = [ "<C-y>" ], run = "shell 'open -R \"$0\"'", desc = "Reveal in Finder" },
+  { on = [ "<C-o>" ], run = "shell 'open \"$@\"'",    desc = "Open with default macOS app" },
+
+  # --- open a shell in the current directory ---
+  { on = [ "<C-t>" ], run = "shell 'tmux new-window -c \"$PWD\"'",       desc = "New tmux window here" },
+  { on = [ "!" ],     run = "shell '$SHELL' --block",                    desc = "Drop to a shell here (exit to return)" },
+
+  # --- plugins ---
+  { on = [ "F" ],      run = "plugin smart-filter", desc = "Smart filter (type to narrow)" },
+  { on = [ "c", "m" ], run = "plugin chmod",        desc = "Chmod on selection" },
 ]
 
 [input]
