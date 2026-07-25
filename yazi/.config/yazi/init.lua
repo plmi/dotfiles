@@ -1,8 +1,14 @@
--- Show user/group of files in status bar
-function Status:owner()
+-- Border around the panes (plugin installed via `ya pkg`)
+require("full-border"):setup()
+
+-- Git status signs in the linemode (plugin installed via `ya pkg`)
+require("git"):setup()
+
+-- Show owner (user:group) of the hovered file, on the right side of the status bar
+Status:children_add(function()
   local h = cx.active.current.hovered
   if h == nil or ya.target_family() ~= "unix" then
-    return ui.Line {}
+    return ""
   end
 
   return ui.Line {
@@ -11,30 +17,13 @@ function Status:owner()
     ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
     ui.Span(" "),
   }
-end
+end, 500, Status.RIGHT)
 
-function Status:render(area)
-  self.area = area
-
-  local left = ui.Line { self:mode(), self:size(), self:name() }
-  local right = ui.Line { self:owner(), self:permissions(), self:percentage(), self:position() }
-  return {
-    ui.Paragraph(area, { left }),
-    ui.Paragraph(area, { right }):align(ui.Paragraph.RIGHT),
-    table.unpack(Progress:render(area, right:width())),
-  }
-end
-
--- Show symlink in status bar
-function Status:name()
+-- Show symlink target next to the filename, on the left side of the status bar
+Status:children_add(function()
   local h = cx.active.current.hovered
-  if not h then
-    return ui.Span("")
+  if h == nil or h.link_to == nil then
+    return ""
   end
-
-  local linked = ""
-  if h.link_to ~= nil then
-    linked = " -> " .. tostring(h.link_to)
-  end
-  return ui.Span(" " .. h.name .. linked)
-end
+  return ui.Span(" -> " .. tostring(h.link_to)):italic():fg("darkgray")
+end, 3300, Status.LEFT)
