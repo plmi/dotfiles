@@ -8,11 +8,20 @@
       '(("gnu"   . "https://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")))
 
+;; Keep package autoloads available even when this file is loaded directly
+;; in batch mode or from a minimal startup.
 (package-initialize)
 
-;; Refresh package list on first run (when cache is empty)
-(unless package-archive-contents
-  (package-refresh-contents))
+;; Bootstrap use-package once, then keep package declarations uniform below.
+(unless (package-installed-p 'use-package)
+  (unless package-archive-contents
+    (package-refresh-contents))
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+
+(setq use-package-always-ensure t)
 
 ;; ---------------------------------------------------------------------------
 ;; Custom Scripts
@@ -64,7 +73,6 @@
 ;; ---------------------------------------------------------------------------
 
 (use-package evil
-  :ensure t
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
@@ -81,7 +89,6 @@
 
 ;; Extends evil keybindings to magit, dired, help, etc.
 (use-package evil-collection
-  :ensure t
   :after evil
   :config
   (evil-collection-init))
@@ -90,27 +97,30 @@
 ;; Completion
 ;; ---------------------------------------------------------------------------
 
-(unless (package-installed-p 'ivy)     (package-install 'ivy))
-(unless (package-installed-p 'counsel) (package-install 'counsel))
+(use-package ivy
+  :config
+  (ivy-mode 1))
 
-(ivy-mode 1)  ; lightweight global completion framework
+(use-package counsel
+  :after ivy)
 
 ;; ---------------------------------------------------------------------------
 ;; Clipboard
 ;; ---------------------------------------------------------------------------
 
-(unless (package-installed-p 'xclip) (package-install 'xclip))
-
-(xclip-mode 1)  ; sync kill-ring with X11 / Wayland clipboard
+(use-package xclip
+  :config
+  (xclip-mode 1))  ; sync kill-ring with X11 / Wayland clipboard
 
 ;; ---------------------------------------------------------------------------
 ;; Magit
 ;; ---------------------------------------------------------------------------
 
-(use-package magit :ensure t)
-
-;; Stage an org file together with all images it links to
-(require 'my-magit-org-images)
+(use-package magit
+  :commands (magit magit-status magit-dispatch)
+  :config
+  ;; Stage an org file together with all images it links to
+  (require 'my-magit-org-images))
 
 ;; ---------------------------------------------------------------------------
 ;; Org Mode
@@ -136,7 +146,6 @@
 ;; hooked into org-tab-first-hook and returns nil when no snippet matches,
 ;; letting org's normal TAB behaviour take over.
 (use-package yasnippet
-  :ensure t
   :hook (org-mode . yas-minor-mode)
   :config
   (require 'my-yas-org)
