@@ -3,5 +3,5 @@
 # on flexoki-dark would never resolve to light. flexoki-light sets its own
 # `[app] overall` background, so it paints light regardless of the terminal.
 [flavor]
-dark  = "flexoki-light"
-light = "flexoki-light"
+dark  = "flexoki-dark"
+light = "flexoki-dark"
