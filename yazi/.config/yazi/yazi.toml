@@ -14,10 +14,3 @@ max_width    = 1200
 max_height   = 1800
 image_filter = "lanczos3"
 image_delay  = 30
-
-# git.yazi: show git status next to files (plugin installed via `ya pkg`)
-[plugin]
-prepend_fetchers = [
-  { url = "*",  run = "git", group = "git" },
-  { url = "*/", run = "git", group = "git" },
-]

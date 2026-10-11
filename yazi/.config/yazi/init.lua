@@ -1,9 +1,6 @@
 -- Border around the panes (plugin installed via `ya pkg`)
 require("full-border"):setup()
 
--- Git status signs in the linemode (plugin installed via `ya pkg`)
-require("git"):setup()
-
 -- Show owner (user:group) of the hovered file, on the right side of the status bar
 Status:children_add(function()
   local h = cx.active.current.hovered
