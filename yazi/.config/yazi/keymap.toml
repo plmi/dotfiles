@@ -3,7 +3,7 @@ prepend_keymap = [
   # --- existing: smart enter / paste ---
   { on = [ "<Enter>" ], run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
   { on = [ "l" ],       run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
-  { on = [ "p" ],       run = "paste", desc = "Paste into the current directory" },
+  { on = [ "p" ],       run = "plugin smart-paste", desc = "Paste into the hovered directory or CWD" },
 
   # --- goto shortcuts (g h / g c / g d are built-in defaults) ---
   { on = [ "g", "p" ], run = "cd ~/projects",  desc = "Go to ~/projects" },

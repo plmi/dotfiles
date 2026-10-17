@@ -14,3 +14,9 @@ max_width    = 1200
 max_height   = 1800
 image_filter = "lanczos3"
 image_delay  = 30
+
+[opener]
+unar = [{ run = 'unar -f %s1', desc = "Extract (unar)", block = true }]
+
+[open]
+prepend_rules = [{ url = "*.rar", use = ["unar", "reveal"] }]
